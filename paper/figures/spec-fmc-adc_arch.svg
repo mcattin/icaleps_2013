@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="670"
+   width="650"
    height="400"
    id="svg2"
    sodipodi:version="0.32"
@@ -1891,9 +1891,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5556349"
-     inkscape:cx="395.14133"
-     inkscape:cy="181.81865"
+     inkscape:zoom="1.1"
+     inkscape:cx="346.0314"
+     inkscape:cy="144.89165"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -1935,19 +1935,6 @@
      id="layer1"
      transform="translate(721.56,-124.43216)">
     <rect
-       style="color:#000000;fill:#ff7373;fill-opacity:0.1254902;fill-rule:nonzero;stroke:#ff7373;stroke-width:0.99999994000000003;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.61990955000000003;stroke-dasharray:none;marker:none;marker-start:url(#DiamondS);marker-end:url(#DotS);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="rect13655"
-       width="219.99998"
-       height="29.999969"
-       x="-291.56"
-       y="134.43216"
-       ry="10.000001" />
-    <path
-       style="color:#000000;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.94117647;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-start:url(#DiamondS-3);marker-end:url(#DotS-33);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m -121.56,154.43215 -115,0"
-       id="path10039-0"
-       sodipodi:nodetypes="cc" />
-    <rect
        style="opacity:0.98999999;fill:#d4f870;fill-opacity:0.18823529;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4.00000001, 4.00000001;stroke-dashoffset:0"
        id="rect5369"
        width="139.5"
@@ -1988,11 +1975,11 @@
          sodipodi:role="line"
          id="tspan3231"
          x="-192.08197"
-         y="301.85403">GN4124</tspan><tspan
+         y="301.85403">PCIe</tspan><tspan
          sodipodi:role="line"
          x="-192.08197"
          y="311.85403"
-         id="tspan3233">core</tspan></text>
+         id="tspan14382">interface</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
@@ -2421,27 +2408,27 @@
          style="font-size:12px"
          id="tspan11674">mezzanine</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:none;stroke:#000000;stroke-width:0.99999994;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect4505-3-8-2-9-34"
-       width="80"
-       height="79.5"
+       width="59.999996"
+       height="59.5"
        x="-142.06"
-       y="234.93216" />
+       y="244.93216" />
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana Bold"
-       x="-102.27972"
+       x="-112.24066"
        y="272.314"
        id="text3229-4"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
-         x="-102.27972"
+         x="-112.24066"
          y="272.314"
-         id="tspan3233-1">GN4124</tspan><tspan
+         id="tspan10708">PCIe</tspan><tspan
          sodipodi:role="line"
-         x="-102.27972"
+         x="-112.24066"
          y="282.314"
-         id="tspan10708">PCIe bridge</tspan></text>
+         id="tspan14386">bridge</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Mstart);marker-end:url(#Arrow1Mend-8)"
        d="m -382.05999,204.43215 0,-29.99999"
@@ -2634,41 +2621,66 @@
        style="color:#000000;fill:none;stroke:#1924b1;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.98642536;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-start:url(#DiamondS);marker-end:url(#DotS);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="m -252.01304,474.86683 -69.54696,-0.43467 0,-100 20,0"
        id="path13519" />
-    <text
-       xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
-       x="-176.86273"
-       y="149.29056"
-       id="text3416-3-9"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="-176.86273"
+    <g
+       id="g14388"
+       transform="translate(-9.9999872,5.7617183e-7)">
+      <rect
+         ry="10.000001"
+         y="134.43216"
+         x="-291.56"
+         height="29.999969"
+         width="219.99998"
+         id="rect13655"
+         style="color:#000000;fill:#ff7373;fill-opacity:0.1254902;fill-rule:nonzero;stroke:#ff7373;stroke-width:0.99999994;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.61990955;stroke-dasharray:none;marker:none;marker-start:url(#DiamondS);marker-end:url(#DotS);visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         sodipodi:nodetypes="cc"
+         id="path10039-0"
+         d="m -121.56,154.43215 -115,0"
+         style="color:#000000;fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.94117647;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-start:url(#DiamondS-3);marker-end:url(#DotS-33);visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3416-3-9"
          y="149.29056"
-         id="tspan10304-0-35"
-         style="font-weight:normal;stroke:none;-inkscape-font-specification:Bitstream Charter">Wishbone bus</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
-       x="-98.55706"
-       y="158.16019"
-       id="text3416-3-9-1"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="-98.55706"
+         x="-176.86273"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
+         xml:space="preserve"><tspan
+           style="font-weight:normal;stroke:none;-inkscape-font-specification:Bitstream Charter"
+           id="tspan10304-0-35"
+           y="149.29056"
+           x="-176.86273"
+           sodipodi:role="line">Wishbone bus</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3416-3-9-1"
          y="158.16019"
-         style="font-weight:normal;-inkscape-font-specification:Bitstream Charter"
-         id="tspan13649">Slave</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
-       x="-263.64008"
-       y="158.00638"
-       id="text3416-3-9-8"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="-263.64008"
+         x="-98.55706"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
+         xml:space="preserve"><tspan
+           id="tspan13649"
+           style="font-weight:normal;-inkscape-font-specification:Bitstream Charter"
+           y="158.16019"
+           x="-98.55706"
+           sodipodi:role="line">Slave</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3416-3-9-8"
          y="158.00638"
-         id="tspan10304-0-35-5"
-         style="font-weight:normal;-inkscape-font-specification:Bitstream Charter">Master</tspan></text>
+         x="-263.64008"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Verdana;-inkscape-font-specification:Verdana"
+         xml:space="preserve"><tspan
+           style="font-weight:normal;-inkscape-font-specification:Bitstream Charter"
+           id="tspan10304-0-35-5"
+           y="158.00638"
+           x="-263.64008"
+           sodipodi:role="line">Master</tspan></text>
+    </g>
+    <rect
+       style="color:#000000;fill:none;fill-opacity:0.12549020000000000;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.61990955000000003;stroke-dasharray:none;stroke-dashoffset:0;marker:none;marker-start:url(#DiamondS);marker-end:url(#DotS);visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect14398"
+       width="649.5"
+       height="397.10028"
+       x="-721.56"
+       y="126.83189"
+       ry="0" />
   </g>
 </svg>

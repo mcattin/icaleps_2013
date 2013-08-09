@@ -31,14 +31,14 @@ CERN, Geneva, Switzerland}
 \begin{abstract}
   In the frame of the renovation of controls and data acquisition electronics for accelerators, the BE-CO-HT section at CERN has designed a kit based on carriers and mezzanines following the FPGA Mezzanine Card (FMC) standard. Carriers exist in VME64x and PCIe form factors, with a PXIe carrier underway. Mezzanines include an Analog to Digital Converter (ADC), a Time to Digital Converter (TDC), a fine delay generator and a Digital Input/Output (DIO). All of the designs are licensed under the CERN Open Hardware Licence (OHL) and commercialised by companies.
 
-This paper discusses the benefits of this carrier-mezzanine strategy and of the Open Hardware based commercial paradigm.
+This paper discusses the benefits of this carrier-mezzanine strategy and of the Open Hardware (OH) based commercial paradigm.
 It also explains the design of each layer of the FMC kit, from the hardware to the gateware and the Linux device driver.
 In addition, new concepts such as the Self-Describing Bus (SDB) and the fmc-bus are presented.
 In order to help designers developing gateware for mezzanines, several tools have been developed and are also introduced in this article.
 Lastly, some of the plans for the future of the FMC kit and Open Hardware Repository (OHWR) are brought up.
 \end{abstract}
 
-\section{MOTIVATIONS} % INTRO
+\section{INTRODUCTION}
 %* Use abstract or conclusions of Erik's article.
 %* Standards used
 %* Example carrier
@@ -48,10 +48,17 @@ Lastly, some of the plans for the future of the FMC kit and Open Hardware Reposi
 %   -> hard to maintain, debug (closed source, no source)
 %   -> no common design base (poor/no re-use)
 %   -> discontinued commercial products
-Many of the electronics modules used in the controls system, commercial or specifically designed at CERN, had become impossible to maintain for several reasons.
-Among which, the fact that most of those modules contains obsolete componants or are discontinued product.
-Some of the modules are thirty year old and often the documentation and the knowledge is scarce or lost, making the debugging or repair very hard and time-consuming.
+One of the mission of the BE-CO-HT section is to specify, design and provide electronic modules for the control systems of all CERN accelerators.
+The section has to support a large variety of hardware, among which; digital and analogue I/O, level converters, serial link and timing boards.
+To replace obsolete modules and upgrade the control systems to new technologies, there is continuous flow of design to be made.
+The coming chapters describes the direction taken by the section to fullfil this mandate.
+
+\subsection{Motivations}
+Many of the electronic modules used in the control systems, commercial or specifically designed at CERN, had become impossible to maintain for several reasons.
+In particular, most of those modules contains obsolete componants or are discontinued product.
+Some of the modules are twenty year old and often the documentation and the knowledge is scarce or lost, making the debugging or repair very hard and time-consuming.
 Also a very limited team has to maintain a large variety of modules.
+Finally some module are maintained in operation with stock in limited quantity, which prevent using them in new installation.
 % => almost no re-use, no design strategies to help re-use, only some copy/paste here and there, one engineer per board (no much collaboration)
 %=> comercial buggy black boxes!
 
@@ -63,27 +70,28 @@ In charge of this renovation, the BE-CO-HT section at CERN decided to develop ne
 \item Compliant to existing standards.
 \end{Itemize}
 
-Regarding the modularity and to reduce the number of different modules, the carrier-mezzanine concept, with platform-dependent carriers and platform-independent mezzanines has been choosen.
+\subsection{New Approach}
+To reduce the number of different modules and increase the modularity, the carrier-mezzanine concept, with platform-dependent carriers and platform-independent mezzanines has been choosen.
 The carrier boards are meant to be as generic as possible, while the mezzanines are specific to a particular task.
 The first one is build around a central FPGA (Field Programmable Gate Array), it includes an inteface to the host bus, some data storage memory, a clock distribution and PLLs compatible with White Rabbit (WR)~\cite{wr} requirements, a few Gigabit links to communicate between carriers and finally one or more FMC slots.
 While the second one is interfacing with the external world and mostly contains analogue and signal conditionning electronics.
-% ~~~~
-\textcolor{red}{The PCB (Printed Circuit Board) design of a carrier is likely to be more complexe than the one of a mezzanine.
-Therefore, only one carrier per platform type has been designed.
-Then for each different fonctionnalities, mezzanines with simpler PCB, have been developed.}
-% ~~~~
+%\textcolor{red}{
+%The PCB (Printed Circuit Board) design of a carrier is likely to be more complexe than the one of a mezzanine.
+%Therefore, only one carrier per platform type has been designed.
+%Then for each different fonctionnalities, mezzanines with simpler PCB, have been developed.
+%}
 
-The ANSI/VITA FMC standard~\cite{fmc} has been chosen, because it perfectly fits the requirements of the carrier-mezzanine approach.
+The standard that best fits our requirements in terms of carrier-mezzanine approach is the ANSI/VITA FMC standard~\cite{fmc}.
 For instance, the FMC standard is very flexible as the connections between carrier and mezzanine are mostly agnosic with regard to the signal direction, electrical level and protocol.
 
 %=> OHL
 
-In order to improve the modulatity and re-usability of the hdl designs, the Wishbone~\cite{wishbone} bus has been chosen as the standard to interconnect the diverse logic blocks inside the carrier's FPGA.
-To improve the hdl code re-use, generic Wishbone cores and other utility cores have been created and gathered in libraries.
+In order to improve the modulatity and re-usability of the HDL (Hardware Description Language) designs, the Wishbone~\cite{wishbone} bus has been chosen as the standard to interconnect the diverse logic blocks inside the carrier's FPGA.
+To enhance the HDL code re-use, generic Wishbone cores and other utility cores have been created and gathered in libraries.
 Moreover, to help automate the design flow (dependencies solving, synthesis, simulation, place \& route), tools and scripts have been developed.
 
 The same modularity concept applies to the Linux device driver layer as well.
-In the frame of the driver developement for the FMC kit, new concepts like the software fmc-bus and the zio input/output framework have emerged.
+In the frame of the driver developement for the FMC kit, new concepts like the software fmc-bus~\cite{fmc-bus} and the ZIO framework~\cite{zio} have emerged.
 % -> Need David's help to clarify a bit!!
 
 %=> examples ?
@@ -109,27 +117,30 @@ As those modules are meant to be used by many people, also outside CERN, the cod
 Over time, we hope that feedback from users will help to make shared modules better.
 Finally, new development will be speeded up as most of the required blocks are already available, documented and tested.
 
-\textcolor{red}{On the hardware side, the SFP interface and the clocking part is re-used between WR-enabled carrier designs.
-Also, all the mezzanine designs share a common part; an eeprom to store IPMI informations.
-In addition, a 1-wire thermometer containing a 64-bit unique ID is placed on all CERN designs.}
-
-The most explicit example of the design modularity and block re-use is probably the gateware.
-The gateware is the hdl code used to generate the bitstream, that is then loaded to the carrier's FPGA to configure it.
+%\textcolor{red}{
+%On the hardware side, the SFP interface and the clocking part is re-used between WR-enabled carrier designs.
+%Also, all the mezzanine designs share a common part; an eeprom to store IPMI informations.
+%In addition, a 1-wire thermometer containing a 64-bit unique ID is placed on all CERN designs.
+%}
+\subsection{Modularity: the Wishbone Case}
+The most explicit example of modularity and block re-use is probably the gateware design.
+The gateware is the HDL code used to generate the bitstream, that is then loaded to the carrier's FPGA to configure it.
 The gateware design is articulated around one or several Wishbone buses.
-The wishbone standard is well adapted to inter-block communication. Because it is simple and easy to implement and versatile.
+The wishbone standard is well adapted to inter-block communication, because it is simple and easy to implement and versatile.
 In order to fullfil the high throughput high latency of certain designs, a new pipelined mode have been proposed to the Wishbone standard maintainers. The new mode has been accepted and is now part of the new revision of the standard.
 
-To communicate with the chips outside the FPGA that have standard serial interfaces (SPI, I2C or 1-wire), bus master modules from OpenCores~\cite{opencores} are used.
+To communicate with components outside the FPGA that have standard serial interfaces (SPI, I2C or 1-wire), bus master modules from OpenCores~\cite{opencores} are used.
 Thanks to their Wishbone interface those modules can be integrated to the design without any modification.
 
-For other bus interfaces, like VME64x~\cite{vme} and PCIe (via a GN4124 PCIe bridge from Semtech, formerly Gennum), modules have been design at CERN.
+For other bus interfaces like VME64x~\cite{vme} and PCIe, where no OpenCores modules were available, new HDL components have been created.
 
 For design specific registers that have to be interfaced on a Wishbone bus, a small helper tool have been developped.
-This tool is called wbgen2~\cite{wbgen2} and generated hdl, C header and documentation (htm, tex, texinfo) from a single description file.
-The generated module can directly be connected to a Wishbone bus. The other end is connected to the application. Extra syncronisation to a clock different from the Wishbone clock is also available.
+This tool is called wbgen2~\cite{wbgen2} and generated HDL (VHDL, Verilog), C header and documentation (html, tex, texinfo) from a single description file.
+The generated module can be directly connected to a Wishbone bus, while the other side is connected to the application.
+%Extra syncronisation to a clock different from the Wishbone clock is also available.
 
-Another very important component for the Wishbone topology is the crossbar switch. It allows to connect and arbitrate \textit{M} masters times \textit{S} slaves.
-The developement of this essential component have been carried out in GSI (Helmholtzzentrum für Schwerionenforschung GmbH).
+Another very important component in the Wishbone topology/environment is the crossbar switch. It allows to connect and arbitrate \textit{M} masters times \textit{S} slaves.
+The developement of this essential component have been carried out in GSI (Helmholtzzentrum f\"ur Schwerionenforschung GmbH).
 
 \begin{figure}[htb]
    \centering
@@ -138,57 +149,74 @@ The developement of this essential component have been carried out in GSI (Helmh
    \label{spec-fmc-adc_arch}
 \end{figure}
 
-A good example of the fexibility offered by the wishbone bus interconnect is illustrated in Fig.~\ref{spec-fmc-adc_arch}.
-It represents the fmc-adc hdl architecure.
+A good example of the fexibility offered by the Wishbone bus interconnect is illustrated in Fig.~\ref{spec-fmc-adc_arch}.
+It represents the FMC-ADC HDL architecture.
 The wishbone bus in blue is mapped in the PCI BAR0 address space.
 It allows access to the configuration and control peripherals.
-The red and orange buses are separate from the other bus and used only to transfer data to/from the DDR memory.
-Due to it's size, the memory isn't mapped in the PCI address space.
-The only way to access is is through DMA using the controller in the PCIe inferface module.
-While for the board development the re-use is mainly done via schematics and layout copy/paste, on hdl side it is done with proper dependencies resolution.
-The tool allowing dependencies resolution and management is called hdlmake [6].
-It is also freely available on the ohwr website. This program also generates Makefiles for sythesis and simulation.
+The red and green buses are separate from the other bus and used only to transfer data to/from the DDR memory.
+Due to its size, the DDR memory is not mapped in the PCI address space.
+The only way to access is is through DMA, using the controller in the PCIe inferface module.
 
-In order for the driver to automatically discover the gateware architecture, the SDB (Self Describing Bus) concept [5] has been introduced.
-It consists in a series of structures that descibes the blocks and their mapping in the Wishbone memory space.
-Extra sdb meta-information records allows to uniquelly identify the gateware.
-Those meta-information records contain for example the synthesis date, repository url, commit id, etc...
+\subsection{New Tools and Concepts}
+% -> Add a small intro sentence here
+
+%While for the board development the re-use is mainly done via schematics and layout copy/paste, on the HDL side it is handled with proper dependencies resolution.
+To make HDL block re-use easier a helper tool has been developed.
+It is called hdlmake~\cite{hdlmake} and is available on the OHWR website.
+The designer has to write \textit{Manifest} files describing the project structure and dependencies.
+Then hdlmake automatically fetches the needed libraries and generate Makefiles for sythesis and simulation.
+This tool helped to increase the productivity by making the HDL design flow more automated.
+
+In order for the driver to automatically discover the gateware architecture and load the corresponding modules, the SDB (Self Describing Bus) concept~\cite{sdb} has been introduced.
+It consists in a series of structures that descibes the Wishbone blocks and their mapping in the address space.
+Additionally, SDB meta-information records allows to uniquelly identify the gateware.
+Those meta-information records contain for example the synthesis date, repository URL, commit ID, etc...
 %=> integration of sdb meta-info into build process (avoid manual editing)
 
-When a carrier starts up, it is loaded with a "golden" bitstream.
-This "golden" bitstream only allows access to the carrier peripherals and to the mezzanine standard eeprom.
-The driver, prior to load the final bitstream, has to make sure the expected mezzanine is plugged in.
-To do so, it reads the mezzanine eeprom via the "golden" bitstream.
-The mezzanine eeprom does not only contains the IPMI part defined in the ANSI-VITA 57.1 standard, but also other mezzanine specific data (e.g. calibration values).
-Therefore, to nicely handle the different data in the eeprom, a simple file system has been created.
-This file system in called sdbfs [8], as it is based on Sdb data structures.
+Prior to load the final bitstream to a carrier's FPGA, the driver has to make sure the expected mezzanine is plugged in the FMC slot.
+This is to avoid any hardware damage that could occur if a incompatible bitstream is loaded.
+Therefore, when a carrier starts up, it loads the FPGA with a \textit{golden} bitstream, that only allows access to the carrier peripherals and to the mezzanine standard EEPROM.
+By reading the IPMI information of the mezzanine EEPROM, the driver can verify that the correct mezzanine is attached.
 
-On the software side, the modularity is also present.
-The Linux device driver for a given carrier + mezzanine(s) assembly is in fact made of several kernel objects.
-The SDB and fmc-bus features will be integrated in the official Linux kernel.
+The mezzanine EEPROM does not only contains the IPMI part defined in the ANSI-VITA 57.1 standard, but also other mezzanine specific data (e.g. calibration values).
+Therefore, to nicely handle the different data in the eeprom, a simple file system has been created.
+This file system in called SDBFS~\cite{sdbfs}, as it is based on SDB data structures.
+
+%\textcolor{red}{
+%On the software side, the modularity is also present.
+%The Linux device driver for a given carrier + mezzanine(s) assembly is in fact made of several kernel objects.
+%The SDB and fmc-bus features will be integrated in the official Linux kernel.
+%}
 %=> add more details on driver structure (fmc-bus).
 
-To test the boards, carriers and mezzanines, after they have been manufactured a test environment has been developed.
-This environment and the test programs are written in Python.
-The test environment interfaces with the hardware via simple I/O driver and library.
-Such a environment allows to significantly reduce the testing time by automating most of the process.
+
+%\textcolor{red}{
+%To test the boards after they have been manufactured a test environment has been developed.
+%This environment and the test programs are written in Python.
+%The test environment interfaces with the hardware via simple I/O driver and library.
+%Such a environment allows to significantly reduce the testing time by automating most of the process.
+%}
 %=> human mistake reduction in test
 %=> automation -> control external instruments, design switch box, ...
+% -> also gateware test
 
-The modular hdl architecture make it really easy to port a design from one carrier to another.
-For example, the fmc-adc [7] hdl has been ported from the SPEC (PCIe carrier with one FMC slot) to the SVEC (VME64x carrier with two FMC slots).
-This involved just changing the carrier dependent modules.
-Basically the bus interface had to change from PCIe to VME64x.
-And duplicating the fmc-adc block. In the end it was a one-week job that would have taken a few month if everything had to be written from scratch.
+\subsection{Porting Made Easy}
+With such a modular HDL architecture, porting a design from one carrier to another is straightforward.
+For example, porting the FMC-ADC~\cite{fmc-adc} HDL from the SPEC (PCIe carrier with one FMC slot) to the SVEC (VME64x carrier with two FMC slots) took about one week of work.
+This only involved changing the bus interface to the host from PCIe to VME64x and duplicating the FMC-ADC block.
+Note that designing a VME64x ADC board from scratch would have taken several months.
+
 The same applied to the Python testing environement.
-Most of the code written for the fmc-adc test on the SPEC carrier could be re-used to test two fmc-adc on a SVEC carrier.
+Most of the code written to test the FMC-ADC on the SPEC carrier have been re-used to test two FMC-ADC on a SVEC carrier.
 Again, only the bus interface layer had to be changed from PCIe to VME.
 %=> Example of Conv-ttl-blo PTS from SVEC PTS
 
-A single product (e.g fmc-adc + SPEC) involves several different OHWR projects.
-For a user to be able to us a product, at least three projects are needed; the carrier project for the golden bitstream, the mezzanine project for the application bitstream and the mezzanine software support project for the Linux device driver and tools.
+\subsection{Release Concept}
+Usually, a single product involves several different OHWR projects.
+By product, we mean a functional set of carrier and mezzanine(s) boards along with gateware and software. (e.g FMC-ADC + SPEC).
+For a user to be able to use a product, at least three projects are needed; the carrier project for the golden bitstream, the mezzanine project for the application bitstream and the mezzanine software support project for the Linux device driver and test program.
 To simplify user's life, a release procedure has been put in place.
-For each component (gateware or software), the development is frozen into a ``release''.
+For each component (gateware or software), the development is frozen into a \textit{release}.
 In addition, compatible releases of the gateware and software are bundled together in a archive.
 
 
@@ -217,47 +245,56 @@ In addition, compatible releases of the gateware and software are bundled togeth
 %- FMC front panel small dimensions
 %- Talk about other CERN section developing FMC and carrier?
 
-During the last few years, CERN's controls group started to design new projects in a fully open fashion.
-All new projects are developed using the OHWR platform to improve collaboration and sharing.
+For the last three years, CERN's controls group designed all its new projects in a fully open fashion, using the OHWR platform to improve collaboration and sharing.
 In this section, the advantages and drawbacks of open hardware designs will be discussed.
-This is based on our experience in the CERN's controls group.
+This is based on our experience of collaboration with other groups at CERN, external partners and companies.
 
+\subsection{Towards Better Designs}
 Some of the main advantages of an open hardware design are the peer review and user feedback.
 Publishing the design, even during the development phase, allow for peer review and early bugs or misdesign problems detection.
 Giving the production task to companies knowledgable about design is also an important point of the whole process.
-Because they will not only spot manufacturability issues, but also design ones.
-And this is another important layer of checking, that avoids producing faulty prototypes or series.
+Because they will not only spot manufacturability issues, but also design problems.
+This is another important layer of checking, that avoids producing faulty prototypes or series.
 %=> SVEC regulator voltage example
 
 The feedback from users is also very valuable.
-Giving the user access to the sources helps him to better understand the design and give usefull comment or propose improvements.
+Having access to the source help users to better understand the design and give usefull comment or propose improvements.
 Moreover, some users are using our designs in different, sometimes unexpected, conditions.
 %=> SPEC in other computer (SFP mecanical problem)
 %=> SPEC in extreme temperature
 In close source designs, users can only report bugs.
-They are not able to look themselves into the schematics or hdl to find out what is going wrong.
+They are not able to look themselves into the schematics or HDL to find out what is going wrong.
 Profiting from users knowledge to improve the design is another advantage of openness.
 %=> time spend in doc is counterbalanced by users feedback
 
+\subsection{A Few Drawbacks}
 Even though the open hardware model perfectly fits our needs, we can still list a few disadvantages.
-Among which the overhead caused by the support that has to be given to collaborators and users. This consits mainly in replying question, and sometimes helping in setting up a system.
-But we believe that the extra load to give support can be mitigated with additional quality in the project, essentially a good and up-to-date documentation.
-Futhermore, we expect support to partly shift towards the companies selling our open designs as their own products.
-Also we can mention the fact that when we first collaborate with a company to produce a board, it takes more time than through a well known path.
+Among which the overhead caused by the support that has to be given to collaborators and users. This consits mainly in replying question, and sometimes in helping setting up a system.
+But we believe that this extra load can be mitigated with additional quality in the project, essentially a good and up-to-date documentation.
+Futhermore, we expect support to partly shift towards companies selling Open Hardware designs as their own products.
+
+Finally, we can mention the fact that the first collaboration with a company to produce an OH board, it took more time than through the conventional workflow.
 In general, it takes about one year between the order and the series delivery.
 It includes a pre-series of a limited number of boards to validate the production process.
+% -> explain why it takes more time?
+%      - quality standards not met in pre-series
+%      - feedback on manufacurability/design
+
+\subsection{Knowledge Transfer}
+%=> someting more on KT instead of the Re-use section???
 
 \subsection{Re-use}
 Another great advantage of open designs is the re-useability.
-Not only at the schematics, hdl or software levels, but also at the board level.
+Not only at the schematics, HDL or software levels, but also at the board level.
 The OHWR already counts several example of boards been used as a basis to design a new one.
-For example, the PCie FMC carrier (SPEC) as already serve as a startpoint to develop two other boards, a PXIe FMC carrier and a PowerPC FMC carrier.
+For example, the PCie FMC carrier (SPEC) as already served as a startpoint to develop two other boards, a PXIe FMC carrier and a PowerPC FMC carrier.
+% -> spin-off boards designed by companies
 
-Besides other groups from CERN or outside are re-using our boards, mainly FMC carrier, in their own projects.
+Besides, other groups from CERN or outside are integrating our boards, mainly FMC carriers, in their own projects.
 % >> to intro ?
 The controls group at CERN is mostly a service provider for other groups.
 One of the service is to provide standard front-end platform and general purpose modules.
-With the FMC carrier/mezzanine model, the controls group now provides all the required infrastructure for hardware (FMC carriers), gateware (hdl core collection) and software (modular driver design). With this framework, other groups can develop their specific application for each layer.
+With the FMC carrier/mezzanine model, the controls group now provides all the required infrastructure for hardware (FMC carriers), gateware (HDL core collection) and software (modular driver design). With this framework, other groups can develop their specific application for each layer.
 % >> to intro ?
 
 
@@ -270,6 +307,7 @@ With the FMC carrier/mezzanine model, the controls group now provides all the re
 %   -> limitations of current platforms (PCIe, VME)
 This chapter discusses the future improvements to the FMC kit and the OHWR projects.
 
+\subsection{Universal PCB Design Tool}
 Nowadays there is no common file format to transfer projects between PCB design tools.
 This is a serious limition to re-usability.
 Because different instituts, laboratories or companies might have various PCB design tools.
@@ -277,17 +315,22 @@ On the other hand, open source alternatives are not adequate to be used in compl
 For those reasons the controls group at CERN decided to encourage the improvement of KiCad, one of the open source EDA software.
 The objective is to help enhance KiCad in such a way that it becomes an efficient tool for PCB design which people can use to share their design information without compromising productivity.
 
-On the OHWR side, the last few years were dedicated to boards development and production of the first series in collaboration with industry.
+\subsection{More Quality}
+The last few years were dedicated to boards development and production of the first series in collaboration with industry.
 Now that the basic bricks of the kit are released or will soon be, an effort will be made on the project's quality.
 In order to facilitate users and new developers to start with OHWR projects, the documentation should be improved, the projects and repositories structure should be cleaned and unified.
-In the mean time, FAQ pages have been created to centralise the questions received and answered by e-mail.
-Moreover we expect the companies selling OH products to be able to give support to the users.
 
+In the mean time, FAQ pages have been created to centralise the questions received and answered by e-mail.
+Moreover we expect the companies selling Open Harware products to be able to give support to the users.
+
+\subsection{Next Front-end Computer Platform}
 Another concern is the choice of the future platform for the front-end computers at CERN.
-Currently, the two platforms supported by the controls group are VME64x and PICMG 1.3 (industrial PC with PCI and PCIe slots).
-FMC carriers have been developed for VME64x, PCIe and PXIe. The later is supported by the industrial controls \& engineering group at CERN.
+Currently, the two platforms supported by the BE-CO group are VME64x and PICMG 1.3 (industrial PC with PCI and PCIe slots).
+So far, FMC carriers have been developed for VME64x, PCIe and PXIe. The later is supported by the EN-ICE group at CERN.
+
 The two supported platforms have their limitations.
-For example, the PC form-factor is not well suited from the exploitation point of view. It is complicated to replace a faulty board in the field.
+For example, the PC form-factor is not well suited from the exploitation point of view.
+In the sense that replacing a faulty board is not straightforward.
 A VME64x board on the other hand can easily be replaced. The concern is more on the backplane bus troughput.
 In addition, both standards are missing clock and trigger distribution lines in the backplane. Which is a very important feature in a distributed control system.
 Therefore the CERN's controls group is looking for a new standard for it's front-end computer.
@@ -299,11 +342,7 @@ Therefore the CERN's controls group is looking for a new standard for it's front
 %* fmc proj, hdl lib, driver slowly getting mature -> still need better struct and organisation
 %* 
 
-
-\section{ACKNOWLEDGEMENT}
-
-
-
+\bibliographystyle{ieeetr}
 %\begin{thebibliography}{9}   % Use for  1-9  references
 \begin{thebibliography}{99} % Use for 10-99 references
 

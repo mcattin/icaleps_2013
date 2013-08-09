@@ -4,7 +4,7 @@ all : fmc_kit_draft.pdf
 
 fmc_kit_draft.pdf : fmc_kit_draft.tex
 	latex $^
-#	bibtex
+# 	bibtex
 	latex $^
 	latex $^
 	dvips -j0 fmc_kit_draft
