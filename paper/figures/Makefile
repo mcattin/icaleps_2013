@@ -1,6 +1,8 @@
 SVG=$(wildcard *.svg)
+PNG=$(wildcard *.png)
 PDF=$(SVG:.svg=.pdf)
-EPS=$(SVG:.svg=.eps)
+EPS=$(SVG:.svg=.eps) $(PNG:.png=.eps)
+
 
 .PHONY: all
 all: $(PDF) $(EPS)
@@ -9,6 +11,9 @@ all: $(PDF) $(EPS)
 	inkscape --without-gui $< -A $@
 
 %.eps : %.svg
+	inkscape --without-gui $< -E $@
+
+%.eps : %.png
 	inkscape --without-gui $< -E $@
 
 clean:
