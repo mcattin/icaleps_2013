@@ -56,7 +56,7 @@ Replacing obsolete modules and upgrading the control systems to new technologies
 %The coming chapters describe the direction taken by the section to fulfill this mandate.
 
 \subsection{Motivations}
-Many of the electronic modules used in the control systems, either COTS (Commercial Of The Shelf) and specifically designed at CERN, have become difficult to maintain for several reasons.
+Many of the electronic modules used in the control systems, either COTS (Commercial Off The Shelf) or specifically designed at CERN, have become difficult to maintain for several reasons.
 In particular, most of those modules contain obsolete components or are discontinued products.
 Some of the modules are twenty years old and often the documentation and the knowledge is scarce or lost, making the debugging or repair very hard and time-consuming.
 For modules developed at CERN, there was no design strategy to help re-use existing blocks.
@@ -140,7 +140,7 @@ Finally, new developments can be made more efficient as most of the required blo
 The most explicit example of modularity and block re-use is probably the gateware design.
 The gateware is the HDL code used to generate the bitstream that configures the FPGA on the carrier.
 The gateware is designed around one or several Wishbone buses.
-The Wishbone standard is well adapted to inter-block communication because it is simple and easy to implement and versatile.
+The Wishbone standard is well adapted to inter-block communication because it is simple, easy to implement and versatile.
 In order to fulfill the high throughput of certain designs we proposed a new pipelined mode to the Wishbone standard maintainers. The new mode was accepted and is now part of the latest revision of the standard.
 
 Several bus master modules from OpenCores~\cite{opencores} are used to communicate with components outside the FPGA that have standard serial interfaces (SPI, I2C or 1-wire).
@@ -167,9 +167,9 @@ The development of this essential component was carried out in GSI (Helmholtzzen
 %A good example of the flexibility offered by the Wishbone bus interconnect is illustrated in Fig.~\ref{spec-fmc-adc_arch}.
 %It represents the HDL architecture of the FMC-ADC~\cite{fmc-adc}.
 A good example of the flexibility offered by the Wishbone bus interconnect is the HDL architecture of the FMC-ADC~\cite{fmc-adc}, illustrated in Fig.~\ref{spec-fmc-adc_arch}.
-The wishbone bus A is mapped in the PCI BAR0 address space.
+Wishbone bus A is mapped in the PCI BAR0 address space.
 It allows access to the configuration and control peripherals.
-The buses B and C are separate from the other bus and used only to transfer data to and from the DDR memory.
+Buses B and C are separate from the other bus and used only to transfer data to and from the DDR memory.
 Due to its size, the DDR memory is not directly mapped in the PCI address space.
 The only way to access it is through DMA using the controller in the PCIe interface module.
 
@@ -183,9 +183,9 @@ Then hdlmake automatically fetches the required libraries from different locatio
 %This tool helps to increase the productivity by making the HDL design flow more automated.
 
 In order to let the driver automatically discover the gateware architecture and load the corresponding modules, the SDB (Self Describing Bus) concept~\cite{sdb} was developed.
-It consists of a series of structures that describes the Wishbone blocks and their mapping in the address space.
+It consists of a series of structures that describe the Wishbone blocks and their mapping in the address space.
 Additionally, SDB meta-information records allow to uniquely identify the gateware.
-Those meta-information records contain for example the synthesis date, repository URL, commit ID, etc...
+Those meta-information records contain, among other things, the synthesis date, repository URL, commit ID, etc...
 %=> integration of sdb meta-info into build process (avoid manual editing)
 
 Prior to loading the final bitstream to a carrier's FPGA, the driver has to make sure the expected mezzanine is plugged in the FMC slot.
@@ -364,8 +364,8 @@ Moreover we expect the companies selling Open Hardware products to be able to gi
 Different institutes, laboratories or companies might use various PCB design tools.
 Currently there is no common file format to transfer projects between those EDA tools.
 This is a serious limitation to re-usability.
-Unfortunately open source alternatives are not adequate to be used in complex, multi-layer PCB design projects.
-For those reasons the controls group at CERN decided to encourage the improvement of KiCad, one of the open source EDA programs.
+Unfortunately Free Open Source Software (FOSS) alternatives are not adequate to be used in complex, multi-layer PCB design projects.
+For those reasons the controls group at CERN decided to encourage the improvement of KiCad, one of the FOSS EDA programs.
 The objective is to help enhance KiCad in such a way that it becomes an efficient tool for PCB design that people can use to share their design information without compromising productivity.
 
 \subsection{Next Front-end Computer Platform}
@@ -410,7 +410,7 @@ However, most of the OHWR project will require a consolidation effort in the com
 With Open Hardware designs, the feedback and the suggestions from users improve the quality and therefore reduce the risk of discovering problems during operation.
 In addition, openness encourages to have a good documentation in order to limit the time spent to assist users.
 
-The Open Hardware paradigm changed the way CERN works with industries. The production, testing and support tasks were handed over to companies which are now selling Open Hardware boards as their own products.
+The Open Hardware paradigm changed the way we work with industries. The production, testing and support tasks were handed over to companies which are now selling Open Hardware boards as their own products.
 This new model not only allowed to unload CERN from some work but also favored knowledge transfer to industries of CERN member states.
 
 
