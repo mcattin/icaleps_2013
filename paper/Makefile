@@ -1,18 +1,18 @@
-all : fmc_kit_draft.pdf
+all : WECOCB01.pdf
 
 .PHONY : all clean
 
-fmc_kit_draft.pdf : fmc_kit_draft.tex
+WECOCB01.pdf : WECOCB01.tex
 	latex $^
 # 	bibtex
 	latex $^
 	latex $^
-	dvips -j0 fmc_kit_draft
-	ps2pdf  -dPDFX -dEmbedAllFonts=true -dSubsetFonts=true -dEPSCrop=true fmc_kit_draft.ps
+	dvips -j0 WECOCB01
+	ps2pdf  -dPDFX -dEmbedAllFonts=true -dSubsetFonts=true -dEPSCrop=true WECOCB01.ps
 
 
 clean :
 	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi  *~
 
-show : fmc_kit_draft.pdf
+show : WECOCB01.pdf
 	evince $^
