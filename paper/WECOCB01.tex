@@ -50,7 +50,7 @@ In particular, most of those modules contain obsolete components or are disconti
 Some of the modules are twenty years old and often the documentation and the knowledge is scarce or lost, making the debugging or repair very hard and time-consuming.
 For modules developed at CERN, there was no design strategy to help re-use existing blocks.
 Also a very limited team has to maintain a large variety of modules.
-Finally some modules are maintained in operation with a limited stock of spares and therefore cannot be used in new installations.
+Finally some modules are maintained in operation with a limited stock of spares and therefore cannot be deployed in new installations.
 
 \subsection{New Approach}
 In charge of renovating the catalogue of electronic modules, we decided to develop new hardware based on the following principles:
@@ -62,7 +62,7 @@ In charge of renovating the catalogue of electronic modules, we decided to devel
 
 The carrier-mezzanine concept was chosen to reduce the number of different modules and to increase the modularity.
 The carrier boards are platform-dependent and meant to be as generic as possible while the mezzanines are platform-independent and specific to a particular task.
-The carriers are built around a central FPGA (Field Programmable Gate Array) and includes an interface to the host bus, some data storage memory, a clock distribution and PLLs compatible with White Rabbit (WR)~\cite{wr} requirements, a few Gigabit links to communicate between carriers and finally one or more FMC slots.
+The carriers are built around a central FPGA (Field Programmable Gate Array) and include an interface to the host bus, some data storage memory, a clock distribution and PLLs compatible with White Rabbit (WR)~\cite{wr} requirements, a few Gigabit links to communicate between carriers and finally one or more FMC slots.
 The mezzanine is interfacing with the external world and contains mostly analogue and signal conditioning electronics.
 
 \begin{figure}[htb]
@@ -73,7 +73,7 @@ The mezzanine is interfacing with the external world and contains mostly analogu
 \end{figure}
 
 The standard that best fits our requirements in terms of carrier-mezzanine approach is the ANSI/VITA 57.1 FMC standard~\cite{fmc}.
-For instance, the FMC standard is very flexible as the connections between carrier and mezzanine are mostly agnostic with regard to the signal direction, electrical level and protocol.
+For instance, the FMC standard is very flexible as the connections between carrier and mezzanine are mostly unaware of the signal direction, electrical level and protocol.
 
 In order to improve the modularity and re-usability of the HDL (Hardware Description Language) designs, the Wishbone~\cite{wishbone} bus was chosen as the standard to interconnect the diverse logic blocks inside the carrier's FPGA.
 To enhance the HDL code re-use, generic Wishbone cores and other utility cores were created and gathered in libraries.
@@ -124,7 +124,7 @@ The development of this essential component was carried out in GSI (Helmholtzzen
 A good example of the flexibility offered by the Wishbone bus interconnect is the HDL architecture of the FMC-ADC~\cite{fmc-adc}, illustrated in Fig.~\ref{spec-fmc-adc_arch}.
 Wishbone bus A is mapped in the PCI BAR0 address space.
 It allows access to the configuration and control peripherals.
-Buses B and C are separate from the other bus and used only to transfer data to and from the DDR memory.
+Buses B and C are separated from the other bus and used only to transfer data to and from the DDR memory.
 Due to its size, the DDR memory is not directly mapped in the PCI address space.
 The only way to access it is through DMA using the controller in the PCIe interface module.
 
@@ -134,13 +134,13 @@ The designer only has to write \textit{Manifest} files describing the project st
 Then hdlmake automatically fetches the required libraries from different locations (remote repositories, local folders) and generates Makefiles for synthesis and simulation.
 
 In order to let the driver automatically discover the gateware architecture and load the corresponding modules, the SDB (Self Describing Bus) concept~\cite{sdb} was developed.
-It consists of a series of structures that describe the Wishbone blocks and their mapping in the address space.
+It consists of series of structures that describe the Wishbone blocks and their mapping in the address space.
 Additionally, SDB meta-information records allow to uniquely identify the gateware.
 Those meta-information records contain, among other things, the synthesis date, repository URL, commit ID, etc...
 
 Prior to loading the final bitstream to a carrier's FPGA, the driver has to make sure the expected mezzanine is plugged in the FMC slot.
 This is to avoid any hardware damage that could occur if an incompatible bitstream is loaded.
-Therefore, at statup the FPGA is loaded with a \textit{golden} bitstream that only allows access to the carrier peripherals and to the mezzanine standard EEPROM.
+Therefore, at startup the FPGA is loaded with a \textit{golden} bitstream that only allows access to the carrier peripherals and to the mezzanine standard EEPROM.
 By reading the IPMI information in the EEPROM the driver can verify that the correct mezzanine is attached.
 
 The mezzanine EEPROM does not only contain the IPMI part as defined in the FMC standard, but also other mezzanine specific data such as calibration values.
@@ -247,13 +247,13 @@ The two supported platforms have their limitations.
 For example, the PC form-factor is not well suited regarding on-site board replacement.
 A VME64x board on the other hand can easily be replaced but here the concern is more on the backplane bus throughput.
 In addition, both standards are missing clock and trigger distribution lines in the backplane, which is an important feature in a distributed control systems.
-Therefore the CERN's controls group is looking for a new standard for its front-end computer.
+Therefore CERN's controls group is looking for a new standard for its front-end computer.
 Whatever the next front-end platform will be, it is just a matter of designing a new carrier. All the mezzanine kit and development framework is already there.
 
 
 \section{CONCLUSIONS}
 As a service provider, the BE-CO-HT section at CERN has to support a large variety of electronic modules and continuously design new boards to replace the obsolete ones.
-In order to fulfill this mission with limited human resources the next generation of control boards have been developed in an Open Hardware way, sometimes in collaboration with external partners.
+In order to fulfil this mission with limited human resources the next generation of control boards have been developed in an Open Hardware way, sometimes in collaboration with external partners.
 The new kit was designed to be modular and based on standards such as FMC and Wishbone in order to promote re-usability and sharing.
 
 The FMC ecosystem developed over the last few years is now getting mature.

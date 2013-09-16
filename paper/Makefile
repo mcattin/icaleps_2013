@@ -12,7 +12,7 @@ WECOCB01.pdf : WECOCB01.tex
 
 
 clean :
-	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi  *~
+	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~
 
 show : WECOCB01.pdf
 	evince $^
