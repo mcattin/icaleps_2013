@@ -155,14 +155,79 @@
 \subsection*{}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Motivations}
+\begin{frame}{CERN Beams Controls group - BE/CO}
 
-  \begin{block}{BE-CO-HT section mission}
+  \begin{block}{Responsible for}
     \begin{itemize}
     \item
-      Specify, design, provide and support electronics modules
+      Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
+    \item
+      General services such as machine and beam synchronous timing and signal observation
+    \item
+      Specification, design, procurement, integration, installation, commissioning and operation
     \end{itemize}
   \end{block}
+
+  \begin{block}{Supports other groups}
+    \begin{itemize}
+    \item
+      Beam instrumentation, cryogenics, power converters, etc.
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Software}
+    \begin{itemize}
+    \item
+      Linux device drivers, C/C++ libraries, test programs
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Beams Controls standard kit}
+
+  \begin{block}{Hardware kit}
+    \begin{itemize}
+    \item
+      Analog and digital I/O
+    \item
+      Level converters, repeaters
+    \item
+      Serial links, timing modules
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Currently, September 2013}
+    \begin{itemize}
+    \item
+      About 120 module types % -- with just a few engineers
+    \item
+      Most are custom designed: only 1 in 4 is commercial
+    %% \item
+    %%   1 in 4 is obsolete
+    %%   \begin{itemize}
+    %%   \item
+    %%     Can maintain existing installations with a limited stock
+    %%   \item
+    %%     No re-ordering or production possible
+    %%   \item
+    %%     Mostly because of obsolete components
+    %%   \end{itemize}
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Motivations to design a new kit}
+
+  %% \begin{block}{BE-CO-HT section mission}
+  %%   \begin{itemize}
+  %%   \item
+  %%     Specify, design, provide and support electronics modules
+  %%   \end{itemize}
+  %% \end{block}2013_TWEPP_talk
 
   \begin{block}{Hard to maintain}
     \begin{itemize}
@@ -203,6 +268,17 @@
       Specific plateform-independent mezzanines
     \item
       ANSI/VITA 57.1 FMC standard
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Based on standards}
+    \begin{itemize}
+    \item
+      VME
+    \item
+      PCIe
+    \item
+      Wishbone
     \end{itemize}
   \end{block}
 
@@ -262,6 +338,9 @@
       hdl, C header and documentation automatically generated
     \end{itemize}
   \end{block}
+
+  % ADC testing
+  % PTS
 
 \end{frame}
 
@@ -387,6 +466,56 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
+\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Made in Spain, The Netherlands \& Poland}
+
+  \begin{center}
+    \includegraphics[height=7cm]{pictures/spec_v4.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{SVEC - Simple VME FMC Carrier}{Made in Germany}
+
+  \begin{center}
+    \includegraphics[height=7cm]{pictures/svec.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{SPEXI - Simple PXI Express FMC carrier}{A modified SPEC board}
+
+  \begin{center}
+    \includegraphics[height=7cm]{pictures/spexi_v0.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{FMC mezzanine: 5-channel 1ns TDC}{joint development by TE/ABT, TE/CRG \& BE/CO}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{pictures/fmc-tdc.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{FMC mezzanine: 100 MSPS 14-bit 4-channel ADC}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{pictures/fmc-adc-100m.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+%------------ FRAME --------------------------------------------------
+
+
+
+%------------ FRAME --------------------------------------------------
 \begin{frame}{Easy porting}
 
   \begin{block}{}
@@ -408,15 +537,17 @@
 \subsection{Benefits}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+\begin{frame}{}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item
+    \item
+    \item
+    \end{itemize}
+  \end{block}
+
+\end{frame}
 
 %============ SUB-SECTION ============================================
 \subsection{Collaborations}

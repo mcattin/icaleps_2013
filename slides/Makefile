@@ -3,6 +3,9 @@ all : WECOCB01_talk.pdf
 .PHONY : all clean
 
 WECOCB01_talk.pdf : WECOCB01_talk.tex
+#	pdflatex $^
+#	pdflatex $^
+
 #	latex $^
 # 	bibtex
 	latex $^
@@ -15,4 +18,4 @@ clean :
 	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~
 
 show : WECOCB01_talk.pdf
-	evince $^
+	evince $^ &
