@@ -15,7 +15,7 @@ WECOCB01_talk.pdf : WECOCB01_talk.tex
 
 
 clean :
-	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~
+	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~ *.nav *.snm *.vrb *.toc
 
 show : WECOCB01_talk.pdf
 	evince $^ &

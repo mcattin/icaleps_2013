@@ -54,8 +54,8 @@
 
 %\logo{}
 \titlegraphic{\scalebox{4}{
-    \includegraphics[height=0.5cm]{pictures/ohr_logo.eps}~
-    \includegraphics[height=0.5cm]{pictures/cern_logo.eps}}
+    \includegraphics[height=0.5cm]{../pictures/ohr_logo.eps}~
+    \includegraphics[height=0.5cm]{../pictures/cern_logo.eps}}
 }
 
 
@@ -159,26 +159,21 @@
 
   \begin{block}{Responsible for}
     \begin{itemize}
-    \item
-      Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
-    \item
-      General services such as machine and beam synchronous timing and signal observation
-    \item
-      Specification, design, procurement, integration, installation, commissioning and operation
+    \item Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
+    \item General services such as machine and beam synchronous timing and signal observation
+    \item Specification, design, procurement, integration, installation, commissioning and operation
     \end{itemize}
   \end{block}
 
   \begin{block}{Supports other groups}
     \begin{itemize}
-    \item
-      Beam instrumentation, cryogenics, power converters, etc.
+    \item Beam instrumentation, cryogenics, power converters, etc.
     \end{itemize}
   \end{block}
 
   \begin{block}{Software}
     \begin{itemize}
-    \item
-      Linux device drivers, C/C++ libraries, test programs
+    \item Linux device drivers, C/C++ libraries, test programs
     \end{itemize}
   \end{block}
 
@@ -189,30 +184,21 @@
 
   \begin{block}{Hardware kit}
     \begin{itemize}
-    \item
-      Analog and digital I/O
-    \item
-      Level converters, repeaters
-    \item
-      Serial links, timing modules
+    \item Analog and digital I/O
+    \item Level converters, repeaters
+    \item Serial links, timing modules
     \end{itemize}
   \end{block}
 
   \begin{block}{Currently, September 2013}
     \begin{itemize}
-    \item
-      About 120 module types % -- with just a few engineers
-    \item
-      Most are custom designed: only 1 in 4 is commercial
-    %% \item
-    %%   1 in 4 is obsolete
+    \item About 120 module types % -- with just a few engineers
+    \item Most are custom designed: only 1 in 4 is commercial
+    %% \item 1 in 4 is obsolete
     %%   \begin{itemize}
-    %%   \item
-    %%     Can maintain existing installations with a limited stock
-    %%   \item
-    %%     No re-ordering or production possible
-    %%   \item
-    %%     Mostly because of obsolete components
+    %%   \item Can maintain existing installations with a limited stock
+    %%   \item No re-ordering or production possible
+    %%   \item Mostly because of obsolete components
     %%   \end{itemize}
     \end{itemize}
   \end{block}
@@ -224,23 +210,17 @@
 
   %% \begin{block}{BE-CO-HT section mission}
   %%   \begin{itemize}
-  %%   \item
-  %%     Specify, design, provide and support electronics modules
+  %%   \item Specify, design, provide and support electronics modules
   %%   \end{itemize}
   %% \end{block}2013_TWEPP_talk
 
   \begin{block}{Hard to maintain}
     \begin{itemize}
-    \item
-      Lots of different modules
-    \item
-      Obsolete components/modules
-    \item
-      No/scarce documentation
-    \item
-      Small engineer team
-    \item
-      No re-use strategy (pcb, hdl)
+    \item Lots of different modules
+    \item Obsolete components/modules
+    \item No/scarce documentation
+    \item Small engineer team
+    \item No re-use strategy (pcb, hdl)
     \end{itemize}
   \end{block}
 
@@ -251,34 +231,25 @@
 
   \begin{block}{Principles}
     \begin{itemize}
-    \item
-      Openness of designs
-    \item
-      Modularity and re-usability
-    \item
-      Compliance with existing standards
+    \item Openness of designs
+    \item Modularity and re-usability
+    \item Compliance with existing standards
     \end{itemize}
   \end{block}
 
   \begin{block}{Carrier-mezzanine concept}
     \begin{itemize}
-    \item
-      Generic plateform-dependent carriers
-    \item
-      Specific plateform-independent mezzanines
-    \item
-      ANSI/VITA 57.1 FMC standard
+    \item Generic plateform-dependent carriers
+    \item Specific plateform-independent mezzanines
+    \item ANSI/VITA 57.1 FMC standard
     \end{itemize}
   \end{block}
 
   \begin{block}{Based on standards}
     \begin{itemize}
-    \item
-      VME
-    \item
-      PCIe
-    \item
-      Wishbone
+    \item VME
+    \item PCIe
+    \item Wishbone
     \end{itemize}
   \end{block}
 
@@ -293,20 +264,18 @@
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Wishbone}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
+
+  \begin{block}{}
+    Put some text in this block.
+  \end{block}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Example: FMC-ADC gateware architecture}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{../paper/figures/spec-fmc-adc_arch.eps}
+    \includegraphics[height=6.5cm]{../../paper/figures/spec-fmc-adc_arch.eps}
   \end{center}
 
 \end{frame}
@@ -319,23 +288,17 @@
 
   \begin{block}{hdlmake}
     \begin{itemize}
-    \item
-      Project structure descibed in \textit{Manifest} files
-    \item
-      Solves dependencies
-    \item
-      Generates \textit{Makefile} for synthesis and simulation
+    \item Project structure descibed in \textit{Manifest} files
+    \item Solves dependencies
+    \item Generates \textit{Makefile} for synthesis and simulation
     \end{itemize}
   \end{block}
 
   \begin{block}{wbgen2}
     \begin{itemize}
-    \item
-      Wishbone slave generator
-    \item
-      Structure described in a text file
-    \item
-      hdl, C header and documentation automatically generated
+    \item Wishbone slave generator
+    \item Structure described in a text file
+    \item hdl, C header and documentation automatically generated
     \end{itemize}
   \end{block}
 
@@ -350,22 +313,15 @@
   \begin{block}{Self Describing Bus}
     \begin{itemize}
     \item
-      
     \item
-      
-    \item
-      
     \end{itemize}
   \end{block}
 
   \begin{block}{SDB File System}
     \begin{itemize}
     \item
-      
     \item
-      
     \item
-      
     \end{itemize}
   \end{block}
 
@@ -404,29 +360,20 @@
 
   \begin{block}{Fully supported}
     \begin{itemize}
-    \item
-      SPEC
-    \item
-      SVEC
-    \item
-      SPEXI
+    \item SPEC
+    \item SVEC
+    \item SPEXI
     \end{itemize}
   \end{block}
 
   \begin{block}{Other carriers}
     \begin{itemize}
-    \item
-      VFC
-    \item
-      PFC
-    \item
-      AFC
-    \item
-      RHINO
-    \item
-      VXS DSP carrier
-    \item
-      Stand-alone 18-slot FMC carrier
+    \item VFC
+    \item PFC
+    \item AFC
+    \item RHINO
+    \item VXS DSP carrier
+    \item Stand-alone 18-slot FMC carrier
     \end{itemize}
   \end{block}
 
@@ -437,29 +384,20 @@
 
   \begin{block}{Fully supported}
     \begin{itemize}
-    \item
-      ADC-100M
-    \item
-      TDC
-    \item
-      DIO-5ch
-    \item
-      FD
+    \item ADC-100M
+    \item TDC
+    \item DIO-5ch
+    \item FD
     \end{itemize}
   \end{block}
 
   \begin{block}{Other mezzanines}
     \begin{itemize}
-    \item
-      ADC-130M, ADC-200k, ADC-250M, ADC-1G
-    \item
-      ADC-125M-DAC-600M, ADC-10M-DAC-50M
-    \item
-      DAC-10M, DAC-130M, DAC-250M, DAC-600M-DDS
-    \item
-      DIO-16ch, DIO-32ch
-    \item
-      + others more specific mezzanines
+    \item ADC-130M, ADC-200k, ADC-250M, ADC-1G
+    \item ADC-125M-DAC-600M, ADC-10M-DAC-50M
+    \item DAC-10M, DAC-130M, DAC-250M, DAC-600M-DDS
+    \item DIO-16ch, DIO-32ch
+    \item + others more specific mezzanines
     \end{itemize}
   \end{block}
 
@@ -469,7 +407,7 @@
 \begin{frame}{SPEC - Simple PCI Express FMC carrier}{Made in Spain, The Netherlands \& Poland}
 
   \begin{center}
-    \includegraphics[height=7cm]{pictures/spec_v4.eps}
+    \includegraphics[height=7cm]{../pictures/spec_v4.eps}
   \end{center}
 
 \end{frame}
@@ -478,7 +416,7 @@
 \begin{frame}{SVEC - Simple VME FMC Carrier}{Made in Germany}
 
   \begin{center}
-    \includegraphics[height=7cm]{pictures/svec.eps}
+    \includegraphics[height=7cm]{../pictures/svec.eps}
   \end{center}
 
 \end{frame}
@@ -487,7 +425,7 @@
 \begin{frame}{SPEXI - Simple PXI Express FMC carrier}{A modified SPEC board}
 
   \begin{center}
-    \includegraphics[height=7cm]{pictures/spexi_v0.eps}
+    \includegraphics[height=7cm]{../pictures/spexi_v0.eps}
   \end{center}
 
 \end{frame}
@@ -496,7 +434,7 @@
 \begin{frame}{FMC mezzanine: 5-channel 1ns TDC}{joint development by TE/ABT, TE/CRG \& BE/CO}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{pictures/fmc-tdc.eps}
+    \includegraphics[height=6.5cm]{../pictures/fmc-tdc.eps}
   \end{center}
 
 \end{frame}
@@ -505,12 +443,46 @@
 \begin{frame}{FMC mezzanine: 100 MSPS 14-bit 4-channel ADC}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{pictures/fmc-adc-100m.eps}
+    \includegraphics[height=6.5cm]{../pictures/fmc-adc-100m.eps}
   \end{center}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
+\begin{frame}{Commercially available CERN OH designs}{September 2013}
+
+  \begin{table}
+    \centering
+
+% \begin{tabular}{|l||r|r|r|c|}  
+    \begin{tabular}{|l||r|r|r|}  
+      \hline
+      Project & Producers & Users & Produced\\
+      \hline\hline
+      SPEC carrier - PCIe & 3 & 41 & 300 \\  
+      \hline
+      SVEC carrier - VME & 2 & 4 & 105 \\
+      \hline
+      SPEXI carrier - PXIe & 1 & 2 & (proto) 3 \\  
+      \hline
+      \hline
+      ADC 100M 14b 4ch & 2 & 11 & 70 \\
+      \hline
+      TDC 1ns 5cha & 1 & 3 & 70 \\
+      \hline
+      FMC DEL 1ns 4cha & 3 & 4 & 108 \\
+      \hline
+      FMC DIO 5ch & 3 & 10 & 92 \\
+      \hline
+      WR switch 18 ports & 1 & 11 & 77 \\
+      \hline
+    \end{tabular}
+
+    \caption{eight CERN OH designs found producers and users}
+  \end{table}
+
+\end{frame}
+
 %------------ FRAME --------------------------------------------------
 
 
@@ -520,10 +492,8 @@
 
   \begin{block}{}
     \begin{itemize}
-    \item
-      ADC-100M on SPEC = few months
-    \item
-      2x ADC-100M on SVEC = one week
+    \item ADC-100M on SPEC = few months
+    \item 2x ADC-100M on SVEC = one week
     \end{itemize}
   \end{block}
 
@@ -537,13 +507,52 @@
 \subsection{Benefits}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{}
+\begin{frame}{Re-use of work}
+
+  \begin{block}{Examples of re-use of work}
+    \begin{itemize}
+    \item Two companies modified SPEC carrier design
+      \begin{itemize}
+      \item larger FPGA (for software radio)
+      \item AMC and PXIe bus versions
+      \end{itemize}
+    \item A company modified ADC100M design
+      \begin{itemize}
+      \item other input filter
+      \item high-voltage front-end
+      \end{itemize}
+%    \item Company re-uses White Rabbit spec for own product.
+%    \item Companies re-used White Rabbit core.
+%    \item A company re-used nanoFIP code for renovating trains
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Re-use of boards}
+
+  \begin{block}{Our designs are re-used by:}
+    \begin{itemize}
+    \item Other groups at CERN
+    \item Other accelerators/institutes
+    \item Universities
+    \item ...
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Better designs}
 
   \begin{block}{}
     \begin{itemize}
-    \item
-    \item
-    \item
+    \item Peer review
+    \item User feedback
+    \item User give bug fixes, not only bug reports
+    \item Early bug detection (production by design companies)
+    \item Good documentation
     \end{itemize}
   \end{block}
 
@@ -553,59 +562,141 @@
 \subsection{Collaborations}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+\begin{frame}{Collaboration}
+
+  \begin{block}{Board design}
+    \begin{itemize}
+    \item Specified by CERN
+    \item Schematics and layout by company
+    \item Reviewed by CERN
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Board production and test}
+    \begin{itemize}
+    \item Offloads CERN team
+    \item Warranty, repair of faulty devices
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{HDL design}
+    \begin{itemize}
+    \item Core library
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item W
+    \item W
+    \item W
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
 
 %============ SUB-SECTION ============================================
 \subsection{Drawbacks}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+\begin{frame}{}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item Support to collaborators and users, forces to have better documentation
+    \item Companies selling OH products, take over support to users
+    \end{itemize}
+  \end{block}
+
+\end{frame}
 
 
 %############ SECTION ################################################
 \section{Perspectives}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+\begin{frame}{Improving quality}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item Finish documentation
+    \item Clean and unify repositories
+    \item Meanwhile, FAQ page
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{PCB design tool}
+
+  \begin{block}{Limitation to re-usability}
+    \begin{itemize}
+    \item No common file format
+    \item No adequate FOSS alternative
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Improving KiCad}
+    \begin{itemize}
+    \item CERN giving a push
+    \item Efficient PCB design tool
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{New front-end computer platform}
+
+  \begin{block}{Current platforms}
+    \begin{itemize}
+    \item VME64x
+    \item PICMG 1.3 (PCI and PCIe)
+    \item PXI Express (supported by EN/ICE)
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Limitations}
+    \begin{itemize}
+    \item Maintainance (PCI, PCIe)
+    \item Bus throughput (VME64x)
+    \item Clock and trigger
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Future platform not yet know, but}
+    \begin{itemize}
+    \item New carrier design
+    \item Re-useable mezzanines
+    \item HDL and software framework
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
 
 %############ SECTION ################################################
 \section{Conclusions}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+\begin{frame}{}
 
+  \begin{block}{}
+    \begin{itemize}
+    \item w
+    \item w
+    \item w
+    \end{itemize}
+  \end{block}
+
+\end{frame}
 
 %------------ FRAME --------------------------------------------------
 %\begin{frame}{}
