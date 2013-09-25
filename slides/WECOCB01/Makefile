@@ -19,3 +19,6 @@ clean :
 
 show : WECOCB01_talk.pdf
 	evince $^ &
+
+spell : WECOCB01_talk.tex
+	ispell -t $^

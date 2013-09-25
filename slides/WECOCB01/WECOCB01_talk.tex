@@ -151,8 +151,7 @@
 %############ SECTION ################################################
 \section{Why a new kit}
 
-%============ SUB-SECTION ============================================
-\subsection*{}
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{CERN Beams Controls group - BE/CO}
@@ -218,10 +217,10 @@
     \begin{itemize}
     \item Large variety of modules (about 120)
     \item Obsolete components/modules
-    \item Incomplete/nonexistant documentation
+    \item Incomplete/nonexistent documentation
     \item Small engineer team %(spec-> design -> prod -> test -> install -> support)
     \item No re-use strategy (pcb, hdl)
-    \item Non-standard interfaces %(buses, serial protocols, etc...)
+    \item \textit{Ad hoc}/non-standard interfaces %(buses, serial protocols, etc...)
     \end{itemize}
   \end{block}
 
@@ -240,8 +239,8 @@
 
   \begin{block}{Carrier-mezzanine concept}
     \begin{itemize}
-    \item Generic plateform-dependent carriers
-    \item Specific plateform-independent mezzanines
+    \item Generic platform-dependent carriers
+    \item Specific platform-independent mezzanines
     \item Reduce number of supported modules
     \end{itemize}
   \end{block}
@@ -286,16 +285,18 @@
 
 % Alt. title: Design principles ?
 
+% Should mention that a product is: hw board + gateware + drivers + pts
+
 %============ SUB-SECTION ============================================
 \subsection{Gateware architecture}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Wishbone for modularity}
 
-  \begin{block}{Choice}
+  \begin{block}{Why Wishbone?}
     \begin{itemize}
     \item Open standard
-    \item Simple, % doesn't uses a lot of resources
+    \item Simple, % doesn't uses a lot of ressources
     \item Collection of cores already available (OpenCores)
     \end{itemize}
   \end{block}
@@ -311,20 +312,20 @@
 \begin{frame}{Example: FMC-ADC gateware architecture}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/spec-fmc-adc_arch_simple_color.eps}
+    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
   \end{center}
 
 \end{frame}
 
 %============ SUB-SECTION ============================================
-\subsection{New tools and concepts}
+\subsection{Tools and concepts}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Tools}
+\begin{frame}{Tools} % hdl/gateware tools
 
   \begin{block}{hdlmake}
     \begin{itemize}
-    \item Project structure descibed in \textit{Manifest} files
+    \item Project structure described in \textit{Manifest} files
     \item Solves dependencies
     \item Generates \textit{Makefile} for synthesis and simulation
     \end{itemize}
@@ -338,8 +339,29 @@
     \end{itemize}
   \end{block}
 
-  % ADC testing
-  % PTS
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Tools}
+
+  \begin{block}{PTS: Production Test Suite}
+    \begin{itemize}
+    \item Functional test only
+    \item Dedicated test setup per board
+    \item Software environment to run the tests (Python)
+    \item Calibration data stored in FMC EEPROM
+    \item Log files (life-cycle management)
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{PTS: Production Test Suite}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
+  \end{center}
 
 \end{frame}
 
@@ -349,23 +371,24 @@
   \begin{block}{Self Describing Bus}
     \begin{itemize}
     \item Series of predefined structures
-    \item Metadata about cores
+    \item Meta-data about cores
+    \item Allows software to know about gateware architecture
     \end{itemize}
   \end{block}
 
   \begin{block}{SDB File System}
     \begin{itemize}
     \item Based on SDB data structures
-    \item Easy to parse (embbeded processor)
+    \item Easy to parse (e.g. for embedded processor)
     \item Library and tools available % (generate, read)
-    \item Used in: FMC eeprom, FPGA programming flash
+    \item Used in the FMC EEPROM
     \end{itemize}
   \end{block}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}[fragile]{SDB record example}
+\begin{frame}[fragile]{Example: SDB record (VHDL)}
 
   %\begin{block}{SDB record example}
     \begin{verbatim}
@@ -389,6 +412,10 @@
 
 \end{frame}
 
+%------------ FRAME --------------------------------------------------
+% FMC eeprom structure
+% explain fpga fw load (golden -> read eeprom -> final bitstream)
+
 %============ SUB-SECTION ============================================
 \subsection{Open Hardware designs}
 
@@ -406,7 +433,7 @@
 
   \begin{block}{Mezzanines}
     \begin{itemize}
-    \item Four fully supportes (ADC-100M, TDC, DIO-5ch, FD)
+    \item Four fully supported (ADC-100M, TDC, DIO-5ch, FD)
     \item About a dozen other mezzanines (ADC, DAC, DDS, DIO, etc.)
     \end{itemize}
   \end{block}
@@ -502,6 +529,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Modularity advantages}
 
+  % Or just say it?
   \begin{block}{Easy porting}
     \begin{itemize}
     \item ADC-100M on SPEC = few months
@@ -569,6 +597,8 @@
 
 \end{frame}
 
+% merge re-use of work and re-use of boards in one slide?
+
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Better designs}
 
@@ -616,7 +646,7 @@
 \end{frame}
 
 %============ SUB-SECTION ============================================
-\subsection{Drawbacks}
+\subsection{Drawbacks} % remove this subsection
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{}
@@ -633,6 +663,8 @@
 
 %############ SECTION ################################################
 \section{Perspectives}
+
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Improving quality}
@@ -664,6 +696,9 @@
     \end{itemize}
   \end{block}
 
+  % Javier's slide from OKcon
+  % Icarus?
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -679,11 +714,13 @@
 
   \begin{block}{Limitations}
     \begin{itemize}
-    \item Maintainance (PCI, PCIe)
-    \item Bus throughput (VME64x)
-    \item Clock and trigger
+    \item Difficult maintainance (PCI, PCIe)
+    \item Low bus throughput (VME)
+    \item No clock and trigger line on backplanes (VME, PCI)
     \end{itemize}
   \end{block}
+
+%split in two slides!!!
 
   \begin{block}{Future platform not yet know, but}
     \begin{itemize}
@@ -698,6 +735,8 @@
 
 %############ SECTION ################################################
 \section{Conclusions}
+
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{}
