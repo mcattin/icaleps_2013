@@ -148,6 +148,7 @@
 
 
 
+%#####################################################################
 %############ SECTION ################################################
 \section{Why a new kit}
 
@@ -158,28 +159,12 @@
 
   \begin{block}{Responsible for}
     \begin{itemize}
-    \item Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
-    \item General services such as machine and beam synchronous timing and signal observation
-    \item Specification, design, procurement, integration, installation, commissioning and operation
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Supports other groups}
-    \begin{itemize}
-    \item Beam instrumentation, cryogenics, power converters, etc.
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Software}
-    \begin{itemize}
+%    \item Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
+%    \item General services such as machine and beam synchronous timing and signal observation
+    \item Specification, design, procurement and operation of electronic modules
     \item Linux device drivers, C/C++ libraries, test programs
     \end{itemize}
   \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Beams Controls standard kit}
 
   \begin{block}{Hardware kit}
     \begin{itemize}
@@ -202,16 +187,22 @@
     \end{itemize}
   \end{block}
 
+%  \begin{block}{Supports other groups}
+%    \begin{itemize}
+%    \item Beam instrumentation, cryogenics, power converters, etc.
+%    \end{itemize}
+%  \end{block}
+
+%  \begin{block}{Software}
+%    \begin{itemize}
+%    \item Linux device drivers, C/C++ libraries, test programs
+%    \end{itemize}
+%  \end{block}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Motivations to design a new kit}
-
-  %% \begin{block}{BE-CO-HT section mission}
-  %%   \begin{itemize}
-  %%   \item Specify, design, provide and support electronics modules
-  %%   \end{itemize}
-  %% \end{block}2013_TWEPP_talk
 
   \begin{block}{Hard to maintain}
     \begin{itemize}
@@ -280,12 +271,15 @@
 \end{frame}
 
 
+%#####################################################################
 %############ SECTION ################################################
 \section{Kit design}
 
 % Alt. title: Design principles ?
 
-% Should mention that a product is: hw board + gateware + drivers + pts
+% mention hw design? starting with gateware is awkward?
+% hw designs licended under CERN OHL
+% ohwr repository
 
 %============ SUB-SECTION ============================================
 \subsection{Gateware architecture}
@@ -301,10 +295,14 @@
     \end{itemize}
   \end{block}
 
-  % One or more WB bus
-  % All blocks have a WB interface
-  % Crossbar to interconnect/arbitrate masters and slaves
-  % Design of new cores: VME64x, PCIe, DDR3
+  \begin{block}{Gateware architecture}
+    \begin{itemize}
+    \item One or more Wishbone buses
+    \item A Wishbone interface on all blocks
+    \item Crossbar to interconnect/arbitrate masters and slaves
+    \item Design of new cores: VME64x, PCIe, DDR3
+    \end{itemize}
+  \end{block}
 
 \end{frame}
 
@@ -321,7 +319,7 @@
 \subsection{Tools and concepts}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Tools} % hdl/gateware tools
+\begin{frame}{Gateware design tools}
 
   \begin{block}{hdlmake}
     \begin{itemize}
@@ -342,7 +340,7 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Tools}
+\begin{frame}{Testing tool}
 
   \begin{block}{PTS: Production Test Suite}
     \begin{itemize}
@@ -357,7 +355,7 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{PTS: Production Test Suite}
+\begin{frame}{Example: VME boards test system}
 
   \begin{center}
     \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
@@ -391,6 +389,7 @@
 \begin{frame}[fragile]{Example: SDB record (VHDL)}
 
   %\begin{block}{SDB record example}
+  \small
     \begin{verbatim}
       constant c_ONEWIRE_SDB_DEVICE : t_sdb_device := (
          abi_class     => x"0000",
@@ -408,24 +407,42 @@
             date      => x"20121116",
             name      => "WB-Onewire.Control ")));
     \end{verbatim}
+    \normalsize
   %\end{block}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-% FMC eeprom structure
+\begin{frame}{FMC EEPROM structure}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{../pictures/eeprom_struct.eps}
+  \end{center}
+
+\end{frame}
+
+
 % explain fpga fw load (golden -> read eeprom -> final bitstream)
 
 %============ SUB-SECTION ============================================
-\subsection{Open Hardware designs}
+\subsection{Open Hardware products}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Open Hardware boards}
+\begin{frame}{Open Hardware products}
+
+  \begin{block}{What is an OH product?}
+    \begin{itemize}
+    \item Hardware board
+    \item FPGA gateware
+    \item Linux driver
+    \item Production test system
+    \end{itemize}
+  \end{block}
 
   \begin{block}{Carriers}
     \begin{itemize}
     \item Three fully supported (SPEC, SVEC, SPEXI)
-    \item Six other carriers (VXS, AMC, stand-alone, etc.)
+    \item Six other carriers (VXS, AMC, stand-alone)
     \end{itemize}
   \end{block}
 
@@ -434,7 +451,7 @@
   \begin{block}{Mezzanines}
     \begin{itemize}
     \item Four fully supported (ADC-100M, TDC, DIO-5ch, FD)
-    \item About a dozen other mezzanines (ADC, DAC, DDS, DIO, etc.)
+    \item About a dozen other mezzanines (ADC, DAC, DDS, DIO)
     \end{itemize}
   \end{block}
 
@@ -517,7 +534,8 @@
       \hline
       FMC DIO 5ch & 3 & 10 & 92 \\
       \hline
-      WR switch 18 ports & 1 & 11 & 77 \\
+      \hline
+      \textit{WR switch 18 ports} & 1 & 11 & 77\\
       \hline
     \end{tabular}
 
@@ -554,6 +572,7 @@
 \end{frame}
 
 
+%#####################################################################
 %############ SECTION ################################################
 \section{Open Hardware}
 
@@ -589,7 +608,7 @@
   \begin{block}{Our designs are re-used by:}
     \begin{itemize}
     \item Other groups at CERN
-    \item Other accelerators/institutes
+    \item Other laboratories/institutes
     \item Universities
     \item ...
     \end{itemize}
@@ -754,15 +773,7 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-%\begin{frame}{}
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item
-%    \item
-%    \item
-%    \end{itemize}
-%  \end{block}
-%\end{frame}
+% Erik's slide with products webpages?
 
 
 
