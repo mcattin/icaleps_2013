@@ -273,156 +273,190 @@
 
 %#####################################################################
 %############ SECTION ################################################
+\section{Open Hardware}
+
+%============ SUB-SECTION ============================================
+\subsection{Introduction}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Why we use Open Hardware}
+
+  \begin{block}{Fully specify the design}
+    \begin{itemize}
+    \item Avoid black boxes.
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Better designs}
+    \begin{itemize}
+    \item Peer review by experts, including companies.
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Knowledge sharing by design re-use}
+    \begin{itemize}
+    \item One of CERN's key mission.
+    \item Stimulates collaborations, inside and outside CERN.
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Healthier relationship with companies}
+    \begin{itemize}
+    \item No vendor-locked situations.
+    \item Small companies can play important role.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+
+%============ SUB-SECTION ============================================
+\subsection{Repository and license}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{OH repository and license}
+
+  \begin{block}{Open Hardware Repository \href{http://ohwr.org}{-- ohwr.org}}
+    \begin{itemize}
+    \item Web-based collaborative tool for electronics designers
+    \item Wiki, News, File repository, Issues management, Mailing list
+    \item Readable by everyone, without registration
+   \end{itemize}
+  \end{block}
+
+  \begin{block}{CERN Open Hardware License \href{http://ohwr.org/cernohl}{-- ohwr.org/cernohl}}
+    \begin{itemize}
+    \item Developed by Knowledge Transfer Group at CERN.
+    \item Better suited than non-HW licenses (GPL, Creative Commons\dots)
+    \item Defines conditions for using and modifying licensed material.
+   \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%============ SUB-SECTION ============================================
+\subsection{Experiences}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Four years of OH experience}
+
+  \begin{block}{Improved design quality}
+    \begin{itemize}
+    \item Early bug detection
+      \begin{itemize}
+      \item Peer review, user feedback
+      \item Production by \textit{engineering companies}
+      \end{itemize}
+    \item Good documentation % less time spent in user support, 
+    \item Automated test systems
+    \item Modular designs: helps to re-use and saves time
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{More collaborations}
+    \begin{itemize}
+    \item Boards design and review
+    \item Boards production and test
+    \item HDL cores library development
+    \item Linux drivers development
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Examples}
+
+  \begin{block}{Re-use of work}
+    \begin{itemize}
+    \item Two companies modified SPEC carrier design
+      \begin{itemize}
+      \item larger FPGA (for software radio)
+      \item AMC and PXIe bus versions
+      \end{itemize}
+    \item A company modified ADC100M design
+      \begin{itemize}
+      \item other input filter
+      \item high-voltage front-end
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+
+%  \begin{block}{}
+%    \begin{itemize}
+%    \item Other groups at CERN
+%    \item Other laboratories/institutes
+%    \item Universities
+%    \item ...
+%    \end{itemize}
+%  \end{block}
+
+\end{frame}
+
+\begin{comment}
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Better designs}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item Peer review
+    \item User feedback
+    \item User give bug fixes, not only bug reports
+    \item Early bug detection (production by design companies)
+    \item Good documentation
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Collaboration}
+
+  \begin{block}{Board design}
+    \begin{itemize}
+    \item Specified by CERN
+    \item Schematics and layout by company
+    \item Reviewed by CERN
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Board production and test}
+    \begin{itemize}
+    \item Offloads CERN team
+    \item Warranty, repair of faulty devices
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{HDL design}
+    \begin{itemize}
+    \item Core library
+    \end{itemize}
+  \end{block}
+
+  % WB crossbar dev. in GSI
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item Support to collaborators and users, forces to have better documentation
+    \item Companies selling OH products, take over support to users % ==> to perspectives
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\end{comment}
+
+
+%#####################################################################
+%############ SECTION ################################################
 \section{Kit design}
 
 % Alt. title: Design principles ?
-
-% mention hw design? starting with gateware is awkward?
-% hw designs licended under CERN OHL
-% ohwr repository
-
-%============ SUB-SECTION ============================================
-\subsection{Gateware architecture}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Wishbone for modularity}
-
-  \begin{block}{Why Wishbone?}
-    \begin{itemize}
-    \item Open standard
-    \item Simple, % doesn't uses a lot of ressources
-    \item Collection of cores already available (OpenCores)
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Gateware architecture}
-    \begin{itemize}
-    \item One or more Wishbone buses
-    \item A Wishbone interface on all blocks
-    \item Crossbar to interconnect/arbitrate masters and slaves
-    \item Design of new cores: VME64x, PCIe, DDR3
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Example: FMC-ADC gateware architecture}
-
-  \begin{center}
-    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
-  \end{center}
-
-\end{frame}
-
-%============ SUB-SECTION ============================================
-\subsection{Tools and concepts}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Gateware design tools}
-
-  \begin{block}{hdlmake}
-    \begin{itemize}
-    \item Project structure described in \textit{Manifest} files
-    \item Solves dependencies
-    \item Generates \textit{Makefile} for synthesis and simulation
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{wbgen2}
-    \begin{itemize}
-    \item Wishbone slave generator
-    \item Structure described in a text file
-    \item hdl, C header and documentation automatically generated
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Testing tool}
-
-  \begin{block}{PTS: Production Test Suite}
-    \begin{itemize}
-    \item Functional test only
-    \item Dedicated test setup per board
-    \item Software environment to run the tests (Python)
-    \item Calibration data stored in FMC EEPROM
-    \item Log files (life-cycle management)
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Example: VME boards test system}
-
-  \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
-  \end{center}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{New concepts}
-
-  \begin{block}{Self Describing Bus}
-    \begin{itemize}
-    \item Series of predefined structures
-    \item Meta-data about cores
-    \item Allows software to know about gateware architecture
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{SDB File System}
-    \begin{itemize}
-    \item Based on SDB data structures
-    \item Easy to parse (e.g. for embedded processor)
-    \item Library and tools available % (generate, read)
-    \item Used in the FMC EEPROM
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}[fragile]{Example: SDB record (VHDL)}
-
-  %\begin{block}{SDB record example}
-  \small
-    \begin{verbatim}
-      constant c_ONEWIRE_SDB_DEVICE : t_sdb_device := (
-         abi_class     => x"0000",
-         abi_ver_major => x"01",
-         abi_ver_minor => x"01",
-         wbd_endian    => c_sdb_endian_big,
-         wbd_width     => x"4",
-         sdb_component => (
-         addr_first  => x"0000000000000000",
-         addr_last   => x"0000000000000007",
-         product     => (
-            vendor_id => x"000000000000CE42",
-            device_id => x"00000602",
-            version   => x"00000001",
-            date      => x"20121116",
-            name      => "WB-Onewire.Control ")));
-    \end{verbatim}
-    \normalsize
-  %\end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{FMC EEPROM structure}
-
-  \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/eeprom_struct.eps}
-  \end{center}
-
-\end{frame}
-
-
-% explain fpga fw load (golden -> read eeprom -> final bitstream)
 
 %============ SUB-SECTION ============================================
 \subsection{Open Hardware products}
@@ -430,7 +464,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Open Hardware products}
 
-  \begin{block}{What is an OH product?}
+  \begin{block}{More than just a board}
     \begin{itemize}
     \item Hardware board
     \item FPGA gateware
@@ -544,6 +578,156 @@
 
 \end{frame}
 
+
+%============ SUB-SECTION ============================================
+\subsection{Gateware architecture}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Gateware architecture}
+
+  \begin{block}{Wishbone for modularity}
+    \begin{itemize}
+    \item Open standard
+    \item Simple, uses few FPGA ressources
+    \item Collection of cores already available (OpenCores)
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Architecture}
+    \begin{itemize}
+    \item One or more Wishbone buses
+    \item A Wishbone interface on all blocks
+    \item Crossbar to interconnect/arbitrate masters and slaves % devlopped in GSI
+    \item Design of new cores: VME64x, PCIe, DDR3
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Example: FMC-ADC gateware architecture}
+
+  \begin{center}
+    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
+  \end{center}
+
+\end{frame}
+
+%============ SUB-SECTION ============================================
+\subsection{Tools and concepts}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Gateware design tools}
+
+  \begin{block}{hdlmake}
+    \begin{itemize}
+    \item Project structure described in \textit{Manifest} files
+    \item Solves dependencies (fetches remote ones)
+    \item Generates \textit{Makefile} for synthesis and simulation
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{wbgen2: Wishbone slave generator}
+    \begin{itemize}
+    \item Generate register, RAM, FIFO, interrupt controller
+    \item Structure described in a single text file
+    \item HDL, C header and documentation automatically generated
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Testing environment}
+
+  \begin{block}{PTS: Production Test Suite}
+    \begin{itemize}
+    \item Functional test only
+    \item Dedicated test setup per board
+    \item Software framework to run the tests (Python)
+    \item Calibration data stored in FMC EEPROM
+    \item Log files (life-cycle management)
+    \end{itemize}
+  \end{block}
+
+% Before CERN was testing boards
+% -> unloads CERN team
+
+% Warranty, repair of faulty boards
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Example: VME boards test system}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
+  \end{center}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{New concepts}
+
+  \begin{block}{SDB: Self Describing Bus}
+    \begin{itemize}
+    \item Series of predefined structures
+    \item Meta-data about cores
+    \item Allows software to know about gateware architecture
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{SDB File System}
+    \begin{itemize}
+    \item Based on SDB data structures
+    \item Easy to parse (e.g. for embedded processor)
+    \item Library and tools available % (generate, read)
+    \item Used in the FMC EEPROM
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}[fragile]{Example: SDB record (VHDL)}
+
+  %\begin{block}{SDB record example}
+  \small
+    \begin{verbatim}
+      constant c_ONEWIRE_SDB_DEVICE : t_sdb_device := (
+         abi_class     => x"0000",
+         abi_ver_major => x"01",
+         abi_ver_minor => x"01",
+         wbd_endian    => c_sdb_endian_big,
+         wbd_width     => x"4",
+         sdb_component => (
+         addr_first  => x"0000000000000000",
+         addr_last   => x"0000000000000007",
+         product     => (
+            vendor_id => x"000000000000CE42",
+            device_id => x"00000602",
+            version   => x"00000001",
+            date      => x"20121116",
+            name      => "WB-Onewire.Control ")));
+    \end{verbatim}
+    \normalsize
+  %\end{block}
+
+\end{frame}
+
+\begin{comment}
+%------------ FRAME --------------------------------------------------
+\begin{frame}{FMC EEPROM structure}
+
+  \begin{center}
+    \includegraphics[height=6.5cm]{../pictures/eeprom_struct.eps}
+  \end{center}
+
+\end{frame}
+
+% explain fpga fw load (golden -> read eeprom -> final bitstream)
+
+
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Modularity advantages}
 
@@ -570,182 +754,62 @@
   \end{block}
 
 \end{frame}
+\end{comment}
+
 
 
 %#####################################################################
-%############ SECTION ################################################
-\section{Open Hardware}
-
-%============ SUB-SECTION ============================================
-\subsection{Benefits}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Re-use of work}
-
-  \begin{block}{Examples of re-use of work}
-    \begin{itemize}
-    \item Two companies modified SPEC carrier design
-      \begin{itemize}
-      \item larger FPGA (for software radio)
-      \item AMC and PXIe bus versions
-      \end{itemize}
-    \item A company modified ADC100M design
-      \begin{itemize}
-      \item other input filter
-      \item high-voltage front-end
-      \end{itemize}
-%    \item Company re-uses White Rabbit spec for own product.
-%    \item Companies re-used White Rabbit core.
-%    \item A company re-used nanoFIP code for renovating trains
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Re-use of boards}
-
-  \begin{block}{Our designs are re-used by:}
-    \begin{itemize}
-    \item Other groups at CERN
-    \item Other laboratories/institutes
-    \item Universities
-    \item ...
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-% merge re-use of work and re-use of boards in one slide?
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Better designs}
-
-  \begin{block}{}
-    \begin{itemize}
-    \item Peer review
-    \item User feedback
-    \item User give bug fixes, not only bug reports
-    \item Early bug detection (production by design companies)
-    \item Good documentation
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%============ SUB-SECTION ============================================
-\subsection{Collaborations}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Collaboration}
-
-  \begin{block}{Board design}
-    \begin{itemize}
-    \item Specified by CERN
-    \item Schematics and layout by company
-    \item Reviewed by CERN
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Board production and test}
-    \begin{itemize}
-    \item Offloads CERN team
-    \item Warranty, repair of faulty devices
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{HDL design}
-    \begin{itemize}
-    \item Core library
-    \end{itemize}
-  \end{block}
-
-  % WB crossbar dev. in GSI
-
-\end{frame}
-
-%============ SUB-SECTION ============================================
-\subsection{Drawbacks} % remove this subsection
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{}
-
-  \begin{block}{}
-    \begin{itemize}
-    \item Support to collaborators and users, forces to have better documentation
-    \item Companies selling OH products, take over support to users
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-
 %############ SECTION ################################################
 \section{Perspectives}
 
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Improving quality}
+\begin{frame}{Future work}
 
-  \begin{block}{}
+  \begin{block}{Consolidate our designs}
     \begin{itemize}
-    \item Finish documentation
-    \item Clean and unify repositories
-    \item Meanwhile, FAQ page
+    \item Consolidate firmware and Linux drivers. Make Releases.
+    \item Consolidate documentation (manuals, FAQs, ...).
+    \item Help companies to provide support.
+    \item Cleanup and unify repositories.
     \end{itemize}
   \end{block}
 
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{PCB design tool}
-
-  \begin{block}{Limitation to re-usability}
+  \begin{block}{Facilitate sharing with FOSS EDA tools}
+    % FOSS = Free Open Source Software, EDA = Electronic Design Automation
     \begin{itemize}
-    \item No common file format
-    \item No adequate FOSS alternative
+    \item Tools are expensive and do not interoperate.
+    \item Existing FOSS tools not usable for complex designs.
+    \item Therefore we stimulate the development of FOSS tools:
+      \begin{itemize}
+      \item Extension of \textbf{Icarus} Verilog simulator with VHDL and SV support. % SV = SystemVerilog
+      \item Enhancement of \textbf{KiCAD} (schematics \& PCB editor).
+      \end{itemize}
     \end{itemize}
   \end{block}
-
-  \begin{block}{Improving KiCad}
-    \begin{itemize}
-    \item CERN giving a push
-    \item Efficient PCB design tool
-    \end{itemize}
-  \end{block}
-
-  % Javier's slide from OKcon
-  % Icarus?
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{New front-end computer platform}
 
-  \begin{block}{Current platforms}
+  \begin{block}{Current platforms limitations}
     \begin{itemize}
-    \item VME64x
-    \item PICMG 1.3 (PCI and PCIe)
-    \item PXI Express (supported by EN/ICE)
+%    \item VME64xA
+%    \item PICMG 1.3 (PCI and PCIe)
+%    \item PXI Express (supported by EN/ICE)
+    \item Difficult aintainance (PCI, PCIe)
+    \item Low bus throughput (VME, PCI)
+    \item No clock and trigger line on backplanes (VME, PCI, PCIe)
     \end{itemize}
   \end{block}
 
-  \begin{block}{Limitations}
+   \begin{block}{Future platform not yet know}
     \begin{itemize}
-    \item Difficult maintainance (PCI, PCIe)
-    \item Low bus throughput (VME)
-    \item No clock and trigger line on backplanes (VME, PCI)
-    \end{itemize}
-  \end{block}
-
-%split in two slides!!!
-
-  \begin{block}{Future platform not yet know, but}
-    \begin{itemize}
-    \item New carrier design
-    \item Re-useable mezzanines
-    \item HDL and software framework
+    \item Just designing a carrier.
+    \item Re-useable mezzanines set.
+    \item HDL and software framework ready.
     \end{itemize}
   \end{block}
 
@@ -760,7 +824,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{}
 
-  \begin{block}{The FMC kit is not only a set of hardware module}
+  \begin{block}{The CERN's FMC kit is not only a set of hardware module}
     \begin{itemize}
     \item Collection of hdl cores
     \item Linux device driver and test program
@@ -769,6 +833,68 @@
     \item Commercially available (sometimes from several sources)
     \end{itemize}
   \end{block}
+
+  \begin{itemize}
+  \item The electronics that we support cannot be black boxes.
+  \item Open Hardware has many advantages.
+    \begin{itemize}
+    \item Anyone can help in developments and make improvements.
+    \item Allows to work differently with industry (design work, smaller companies).
+    \item Not tied to a single company for production and support.
+    \end{itemize}
+  \item Using standards (VME64x, PCIe, FMC, Wishbone) attracts users and improves re-usability.
+  \item OHR site is practical for engineers and is stimulating.
+  \item OHR site contains many re-usable HDL cores.
+  \item Good FOSS tools needed to facilitate sharing.
+  \item Many designs being developed and several are already produced by industry.
+  \item Four years of experience show it works!
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Erik's for TWEPP}
+
+  \begin{itemize}
+  \item Open Hardware has many advantages.
+    \begin{itemize}
+    \item Anyone can help in developments and make improvements.
+    \item Allows to work differently with industry (design work, smaller companies).
+    \item Not tied to a single company for production and support.
+    \end{itemize}
+  \item Many things must be done right:
+    \begin{itemize}
+    \item Be Open
+    \item Make design general enough
+    \item Use standards - cool features help: White Rabbit
+    \item Be complete: from design to production test and drivers
+    \item Work intensively with industry
+    \end{itemize}
+  \item Likely not for everyone or all designs.
+  \item OHR site is practical for engineers and is stimulating.
+  \item Eight CERN designs are already commercialized.
+  \item Four years of experience show it works!
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Javier's for OKcon}
+
+  \begin{itemize}
+  \item The electronics that we support cannot be black boxes.
+  \item Open Hardware has many advantages.
+    \begin{itemize}
+    \item Anyone can help in developments and make improvements.
+    \item Allows to work differently with industry (design work, smaller companies).
+    \item Not tied to a single company for production and support.
+    \end{itemize}
+  \item {CERN Open Hardware License} provides a legal basis.
+    %\item Using standards (VME64x, PCIe, FMC, Wishbone) attracts users and improves re-usability.w
+  \item OHR site is practical, stimulating and fun for engineers.
+    %\item OHR site contains many re-usable HDL cores.
+  \item Good FOSS tools needed: help us make it happen!
+  \item Many designs being developed and several are already produced by industry.
+  \item Four years of experience show it works!
+  \end{itemize}
 
 \end{frame}
 
