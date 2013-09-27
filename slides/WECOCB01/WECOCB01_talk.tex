@@ -2,36 +2,17 @@
 \mode<presentation>
 \setbeamertemplate{navigation symbols}{}
 \usetheme{Warsaw}
+%\setbeameroption{show notes}
+\setbeameroption{hide notes}
 
 %\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
-
-% define your own colors:
-%\definecolor{Red}{rgb}{1,0,0}
-%\definecolor{Blue}{rgb}{0,0,1}
-%\definecolor{Green}{rgb}{0,1,0}
-%\definecolor{magenta}{rgb}{1,0,.6}
-%\definecolor{lightblue}{rgb}{0,.5,1}
-%\definecolor{lightpurple}{rgb}{.6,.4,1}
-%\definecolor{gold}{rgb}{.6,.5,0}
-%\definecolor{orange}{rgb}{1,0.4,0}
-%\definecolor{hotpink}{rgb}{1,0,0.5}
-%\definecolor{newcolor2}{rgb}{.5,.3,.5}
-%\definecolor{newcolor}{rgb}{0,.3,1}
-%\definecolor{newcolor3}{rgb}{1,0,.35}
-%\definecolor{darkgreen1}{rgb}{0, .35, 0}
-%\definecolor{darkgreen}{rgb}{0, .6, 0}
-%\definecolor{darkred}{rgb}{.75,0,0}
-
-%\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
-%\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
-
 \useoutertheme[subsection=false]{smoothbars}
 
 % include packages
 \usepackage{subfigure}
 \usepackage{multicol}
 \usepackage{amsmath}
-\usepackage{epsfig} % Erik: didn't work with Miktex
+\usepackage{epsfig}
 \usepackage{graphicx}
 \usepackage[all,knot]{xy}
 \xyoption{arc}
@@ -47,10 +28,8 @@
 %\geometry{verbose,letterpaper}
 %\usepackage{movie15}
 %\usepackage{hyperref}
+\usepackage{pgfpages}
 
-
-% Or whatever. Note that the encoding and the font should match. If T1
-% does not look nice, try deleting the line with the fontenc.
 
 %\logo{}
 \titlegraphic{\scalebox{4}{
@@ -121,11 +100,18 @@
 
 \begin{frame}
   \titlepage
+  \note[item]{Introduce myself.}
+  \note[item]{I'm going to talk about the CERN's FMC kit.}
 \end{frame}
 
 \begin{frame}{Outline}
   \tableofcontents
   % You might wish to add the option [pausesections]
+  \note[item]{First I will explain the current situation and the reasons why we needed a new kit.}
+  \note[item]{Then I'll explain why and how we used open hardware to develop the new kit and also share a bit of our experience with open hardware.}
+  \note[item]{Then I will present the products already available.}
+  \note[item]{I will also present the architecture of the gateware inside the FPGA and the new tools and concepts we implemented.}
+  \note[item]{Finally, I will talk about the future work and finish with some conclusions.}
 \end{frame}
 
 
@@ -155,9 +141,9 @@
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{CERN Beams Controls group - BE/CO}
+\begin{frame}{CERN Beams Controls group - BE/CO} % HT section?
 
-  \begin{block}{Responsible for}
+  \begin{block}{Hardware \& Timing section responsible for}
     \begin{itemize}
 %    \item Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
 %    \item General services such as machine and beam synchronous timing and signal observation
@@ -174,7 +160,7 @@
     \end{itemize}
   \end{block}
 
-  \begin{block}{Currently, September 2013}
+  \begin{block}{Currently, October 2013}
     \begin{itemize}
     \item About 120 module types % -- with just a few engineers
     \item Most are custom designed: only 1 in 4 is commercial
@@ -186,6 +172,11 @@
     %%   \end{itemize}
     \end{itemize}
   \end{block}
+
+  \note[item]{The hardware and timing section of the beams controls group is responsible for the whole chain of electronics modules design; from specifiction to operation in the accelerators.}
+  \note[item]{Another mission of the section is to provide Linux drivers, with libraries and test programs for the hardware boards.}
+  \note[item]{The hardware kit the section has to maintain contains a large variety of modules: analog and digital I/O, level converters, timing modules, etc...}
+  \note[item]{There is more than one hundred different modules and most of them are custom designs.}
 
 %  \begin{block}{Supports other groups}
 %    \begin{itemize}
@@ -202,18 +193,27 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Motivations to design a new kit}
+\begin{frame}{Why a new kit?}
 
-  \begin{block}{Hard to maintain}
+  \begin{block}{Motivations to design a new kit}
     \begin{itemize}
-    \item Large variety of modules (about 120)
+    \item Current kit hard to maintain
     \item Obsolete components/modules
+    \item Limited stock $\rightarrow$ no new installation
     \item Incomplete/nonexistent documentation
+    \item Large variety of modules (about 120)
     \item Small engineer team %(spec-> design -> prod -> test -> install -> support)
     \item No re-use strategy (pcb, hdl)
     \item \textit{Ad hoc}/non-standard interfaces %(buses, serial protocols, etc...)
     \end{itemize}
   \end{block}
+
+  \note[item]{So with such a big kit of modules, why do we design a new one?}
+  \note[item]{The main reasons are because the current kit is hard to maintain.}
+  \note[item]{It contains a lot of obsolete componants and modules.}
+  \note[item]{Most of the time the documentation is incomplete or lost.}
+  \note[item]{Our engineer team is very small to support this large varierty of modules.}
+  \note[item]{And finally, we didn't have any re-use strategy and most of the interfaces of old modules are non-standard.}
 
 \end{frame}
 
@@ -244,6 +244,8 @@
   % Collection of building blocks
   % -> faster developments
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -267,6 +269,8 @@
 %    \item Wishbone IP core detection scheme, used in FMC bus
     \end{itemize}
   \end{block}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -307,6 +311,8 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
 
@@ -331,6 +337,8 @@
     \item Defines conditions for using and modifying licensed material.
    \end{itemize}
   \end{block}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -362,6 +370,8 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -390,6 +400,8 @@
 %    \item ...
 %    \end{itemize}
 %  \end{block}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -475,8 +487,8 @@
 
   \begin{block}{Carriers}
     \begin{itemize}
-    \item Three fully supported (SPEC, SVEC, SPEXI)
-    \item Six other carriers (VXS, AMC, stand-alone)
+    \item Two fully supported (SPEC, SVEC)
+    \item Seven other carriers (SPEXI, VXS, AMC, stand-alone)
     \end{itemize}
   \end{block}
 
@@ -495,23 +507,29 @@
   % DIO-16ch, DIO-32ch
   % + others more specific mezzanines
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Made in Spain, The Netherlands \& Poland}
+\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Commercialised in Spain, The Netherlands \& Poland}
 
   \begin{center}
     \includegraphics[height=7cm]{../pictures/spec_v4.eps}
   \end{center}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{SVEC - Simple VME FMC Carrier}{Made in Germany}
+\begin{frame}{SVEC - Simple VME FMC Carrier}{Commercialised in Germany}
 
   \begin{center}
     \includegraphics[height=7cm]{../pictures/svec.eps}
   \end{center}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -522,6 +540,8 @@
     \includegraphics[height=7cm]{../pictures/spexi_v0.eps}
   \end{center}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -531,6 +551,8 @@
     \includegraphics[height=6.5cm]{../pictures/fmc-tdc.eps}
   \end{center}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -539,6 +561,8 @@
   \begin{center}
     \includegraphics[height=6.5cm]{../pictures/fmc-adc-100m.eps}
   \end{center}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -576,6 +600,8 @@
     \caption{eight CERN OH designs found producers and users}
   \end{table}
 
+  \note[item]{}
+
 \end{frame}
 
 
@@ -602,6 +628,8 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -610,6 +638,8 @@
   \begin{center}
     \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
   \end{center}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -635,6 +665,8 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -655,6 +687,8 @@
 
 % Warranty, repair of faulty boards
 
+  \note[item]{}
+
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
@@ -663,6 +697,8 @@
   \begin{center}
     \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
   \end{center}
+
+  \note[item]{}
 
 \end{frame}
 
@@ -686,12 +722,14 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
+\begin{comment}
 %------------ FRAME --------------------------------------------------
-\begin{frame}[fragile]{Example: SDB record (VHDL)}
+\begin{frame}[fragile]{Example: SDB record (VHDL)} % for the workshop
 
-  %\begin{block}{SDB record example}
   \small
     \begin{verbatim}
       constant c_ONEWIRE_SDB_DEVICE : t_sdb_device := (
@@ -711,9 +749,12 @@
             name      => "WB-Onewire.Control ")));
     \end{verbatim}
     \normalsize
-  %\end{block}
+
+    \note[item]{}
 
 \end{frame}
+\end{comment}
+
 
 \begin{comment}
 %------------ FRAME --------------------------------------------------
@@ -731,25 +772,10 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Modularity advantages}
 
-  % Or just say it?
   \begin{block}{Easy porting}
     \begin{itemize}
     \item ADC-100M on SPEC = few months
     \item 2x ADC-100M on SVEC = one week
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Re-use}
-    \begin{itemize}
-    \item 
-    \item 
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{}
-    \begin{itemize}
-    \item 
-    \item 
     \end{itemize}
   \end{block}
 
@@ -769,10 +795,10 @@
 
   \begin{block}{Consolidate our designs}
     \begin{itemize}
-    \item Consolidate firmware and Linux drivers. Make Releases.
+    \item Consolidate gateware and drivers. Make more releases.
     \item Consolidate documentation (manuals, FAQs, ...).
     \item Help companies to provide support.
-    \item Cleanup and unify repositories.
+%    \item Cleanup and unify repositories.
     \end{itemize}
   \end{block}
 
@@ -781,7 +807,7 @@
     \begin{itemize}
     \item Tools are expensive and do not interoperate.
     \item Existing FOSS tools not usable for complex designs.
-    \item Therefore we stimulate the development of FOSS tools:
+    \item We contribute to the development of FOSS tools:
       \begin{itemize}
       \item Extension of \textbf{Icarus} Verilog simulator with VHDL and SV support. % SV = SystemVerilog
       \item Enhancement of \textbf{KiCAD} (schematics \& PCB editor).
@@ -789,10 +815,14 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{}
+
 \end{frame}
 
+
+\begin{comment}
 %------------ FRAME --------------------------------------------------
-\begin{frame}{New front-end computer platform}
+\begin{frame}{New front-end computer platform} % Might skip this slide completly if too long
 
   \begin{block}{Current platforms limitations}
     \begin{itemize}
@@ -813,7 +843,10 @@
     \end{itemize}
   \end{block}
 
+   \note[item]{}
+
 \end{frame}
+\end{comment}
 
 
 %############ SECTION ################################################
@@ -822,35 +855,40 @@
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{}
+\begin{frame}{Conclusions}
 
-  \begin{block}{The CERN's FMC kit is not only a set of hardware module}
+  \begin{block}{}
     \begin{itemize}
-    \item Collection of hdl cores
-    \item Linux device driver and test program
-    \item Production test system
-    \item Tools %(wbgen, hdlmake, )
-    \item Commercially available (sometimes from several sources)
+    \item CERN's FMC kit is not only a set of hardware modules
+      \begin{itemize}
+      \item Collection of HDL cores
+      \item Linux device driver and test program
+      \item Production test system
+      \item Tools and concepts %(wbgen, hdlmake, )
+      \item Commercially available (sometimes from several sources)
+      \end{itemize}
+    \item Open Hardware has many advantages.
+      \begin{itemize}
+      \item Anyone can help in developments and make improvements.
+      \item Allows to work differently with industry. % (design work, smaller companies).
+      \item Not tied to a single company for production and support.
+      \end{itemize}
+    \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
+    \item OHR site is practical for engineers and is stimulating.
+%    \item OHR site contains many re-usable HDL cores.
+    \item Good FOSS tools needed to facilitate sharing.
+%    \item Many designs being developed and several are already produced by industry.
+    \item Four years of experience show it works!
     \end{itemize}
   \end{block}
 
-  \begin{itemize}
-  \item The electronics that we support cannot be black boxes.
-  \item Open Hardware has many advantages.
-    \begin{itemize}
-    \item Anyone can help in developments and make improvements.
-    \item Allows to work differently with industry (design work, smaller companies).
-    \item Not tied to a single company for production and support.
-    \end{itemize}
-  \item Using standards (VME64x, PCIe, FMC, Wishbone) attracts users and improves re-usability.
-  \item OHR site is practical for engineers and is stimulating.
-  \item OHR site contains many re-usable HDL cores.
-  \item Good FOSS tools needed to facilitate sharing.
-  \item Many designs being developed and several are already produced by industry.
-  \item Four years of experience show it works!
-  \end{itemize}
+  \note[item]{}
 
 \end{frame}
+
+
+
+\begin{comment}
 
 \begin{frame}{Erik's for TWEPP}
 
@@ -897,6 +935,8 @@
   \end{itemize}
 
 \end{frame}
+
+\end{comment}
 
 %------------ FRAME --------------------------------------------------
 % Erik's slide with products webpages?
