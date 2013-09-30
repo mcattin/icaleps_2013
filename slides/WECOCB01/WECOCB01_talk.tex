@@ -31,7 +31,6 @@
 \usepackage{pgfpages}
 
 
-%\logo{}
 \titlegraphic{\scalebox{4}{
     \includegraphics[height=0.5cm]{../pictures/ohr_logo.eps}~
     \includegraphics[height=0.5cm]{../pictures/cern_logo.eps}}
@@ -44,33 +43,20 @@
 
 \author[Matthieu Cattin] % (optional, use only with lots of authors)
 {\mbox{Matthieu Cattin}, \mbox{Evangelia Gousiou}, \mbox{Javier Serrano}, \mbox{Erik van der Bij}, \mbox{Tomasz W\l{}ostowski}}
-% - Give the names in the same order as the appear in the paper.
-% - Use the \inst{?} command only if the authors have different
-%   affiliation.
 
-\institute%[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+\institute
 {
-  %\inst{1}%
 %  BE-CO Hardware and Timing section\\
   CERN, Geneva, Switzerland
- %\and
- %\inst{2}%
- %Department of Theoretical Philosophy\\
- %University of Elsewhere
  }
-% - Use the \inst command only if there are several affiliations.
-% - Keep it simple, no one is interested in your street address.
 
 \date[ICALEPCS 2013] %(optional, should be abbreviation of conference name)
 {ICALEPCS 2013, San Francisco, 9 October 2013}
-% - Either use conference name or its abbreviation.
-% - Not really informative to the audience, more for people (including
-%   yourself) who are reading the slides online
+
 
 %\subject{Theoretical Computer Science}
 % This is only inserted into the PDF information catalog. Can be left
 % out.
-
 
 % If you have a file called "university-logo-filename.xxx", where xxx
 % is a graphic format that can be processed by latex or pdflatex,
@@ -92,8 +78,8 @@
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
 % the following command:
-
 %\beamerdefaultoverlayspecification{<+->}
+
 
 
 \begin{document}
@@ -145,8 +131,6 @@
 
   \begin{block}{Hardware \& Timing section responsible for}
     \begin{itemize}
-%    \item Controls infrastructure for all CERN accelerators, transfer lines and experimental areas
-%    \item General services such as machine and beam synchronous timing and signal observation
     \item Specification, design, procurement and operation of electronic modules
     \item Linux device drivers, C/C++ libraries, test programs
     \end{itemize}
@@ -164,12 +148,6 @@
     \begin{itemize}
     \item About 120 module types % -- with just a few engineers
     \item Most are custom designed: only 1 in 4 is commercial
-    %% \item 1 in 4 is obsolete
-    %%   \begin{itemize}
-    %%   \item Can maintain existing installations with a limited stock
-    %%   \item No re-ordering or production possible
-    %%   \item Mostly because of obsolete components
-    %%   \end{itemize}
     \end{itemize}
   \end{block}
 
@@ -177,18 +155,6 @@
   \note[item]{Another mission of the section is to provide Linux drivers, with libraries and test programs for the hardware boards.}
   \note[item]{The hardware kit the section has to maintain contains a large variety of modules: analog and digital I/O, level converters, timing modules, etc...}
   \note[item]{There is more than one hundred different modules and most of them are custom designs.}
-
-%  \begin{block}{Supports other groups}
-%    \begin{itemize}
-%    \item Beam instrumentation, cryogenics, power converters, etc.
-%    \end{itemize}
-%  \end{block}
-
-%  \begin{block}{Software}
-%    \begin{itemize}
-%    \item Linux device drivers, C/C++ libraries, test programs
-%    \end{itemize}
-%  \end{block}
 
 \end{frame}
 
@@ -236,14 +202,6 @@
     \end{itemize}
   \end{block}
 
-  % Reduce the number of supported modules
-  % -> more generic modules
-
-  % Modularity and re-use on every layer (hw, gw, sw, test)
-  % Code and documentation quality
-  % Collection of building blocks
-  % -> faster developments
-
   \note[item]{So to make the new kit better, it is: open, modular and based on standards.}
   \note[item]{As we have several operational platforms, we decided to go for a carrier-mezzanine concept.}
   \note[item]{It is mainly to reduce the number of module.}
@@ -268,8 +226,6 @@
     \item Wishbone pipelined mode: \textbf{Wishbone spec} Rev.B4 (2010)
     \item FMC bus Linux driver structure: in \textbf{Linux v3.11}
     \item ZIO Linux framework for DAQ and CTL hardware: \\ \textbf{RFC} made \textbf{to Linux} Kernel list
-%    \item White Rabbit: will be in \textbf{IEEE 1588} High Accuracy profile
-%    \item Wishbone IP core detection scheme, used in FMC bus
     \end{itemize}
   \end{block}
 
@@ -360,133 +316,11 @@
 
 \end{frame}
 
-\begin{comment}
-%============ SUB-SECTION ============================================
-\subsection{Experiences}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Four years of OH experience}
-
-  \begin{block}{Improved design quality}
-    \begin{itemize}
-    \item Early bug detection
-      \begin{itemize}
-      \item Peer review, user feedback
-      \item Production by \textit{engineering companies}
-      \end{itemize}
-    \item Good documentation % less time spent in user support, 
-    \item Automated test systems
-    \item Modular designs: help to re-use and save time
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{More collaborations}
-    \begin{itemize}
-    \item Boards design and review
-    \item Boards production and test
-    \item HDL cores library development
-    \item Linux drivers development
-    \end{itemize}
-  \end{block}
-
-  \note[item]{}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Examples}
-
-  \begin{block}{Re-use of work}
-    \begin{itemize}
-    \item Two companies modified SPEC carrier design
-      \begin{itemize}
-      \item larger FPGA (for software radio)
-      \item AMC and PXIe bus versions
-      \end{itemize}
-    \item A company modified ADC100M design
-      \begin{itemize}
-      \item other input filter
-      \item high-voltage front-end
-      \end{itemize}
-    \end{itemize}
-  \end{block}
-
-%  \begin{block}{}
-%    \begin{itemize}
-%    \item Other groups at CERN
-%    \item Other laboratories/institutes
-%    \item Universities
-%    \item ...
-%    \end{itemize}
-%  \end{block}
-
-  \note[item]{}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Better designs}
-
-  \begin{block}{}
-    \begin{itemize}
-    \item Peer review
-    \item User feedback
-    \item User give bug fixes, not only bug reports
-    \item Early bug detection (production by design companies)
-    \item Good documentation
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Collaboration}
-
-  \begin{block}{Board design}
-    \begin{itemize}
-    \item Specified by CERN
-    \item Schematics and layout by company
-    \item Reviewed by CERN
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{Board production and test}
-    \begin{itemize}
-    \item Offloads CERN team
-    \item Warranty, repair of faulty devices
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{HDL design}
-    \begin{itemize}
-    \item Core library
-    \end{itemize}
-  \end{block}
-
-  % WB crossbar dev. in GSI
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{}
-
-  \begin{block}{}
-    \begin{itemize}
-    \item Support to collaborators and users, forces to have better documentation
-    \item Companies selling OH products, take over support to users % ==> to perspectives
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-
-\end{comment}
 
 
 %#####################################################################
 %############ SECTION ################################################
 \section{Kit design}
-
-% Alt. title: Design principles ?
 
 %============ SUB-SECTION ============================================
 \subsection{Open Hardware products}
@@ -525,6 +359,7 @@
   % DIO-16ch, DIO-32ch
   % + others more specific mezzanines
 
+  \note[item]{The new hardware kit is not only about hardware boards.}
   \note[item]{}
 
 \end{frame}
@@ -589,8 +424,6 @@
 
   \begin{table}
     \centering
-
-% \begin{tabular}{|l||r|r|r|c|}
     \begin{tabular}{|l||r|r|r|}
       \hline
       Project & Producers & Users & Produced\\
@@ -614,7 +447,6 @@
       \textit{WR switch 18 ports} & 1 & 11 & 77\\
       \hline
     \end{tabular}
-
     \caption{eight CERN OH designs found producers and users}
   \end{table}
 
@@ -660,6 +492,7 @@
   \note[item]{}
 
 \end{frame}
+
 
 %============ SUB-SECTION ============================================
 \subsection{Tools and concepts}
@@ -755,62 +588,6 @@
 
 \end{frame}
 
-\begin{comment}
-%------------ FRAME --------------------------------------------------
-\begin{frame}[fragile]{Example: SDB record (VHDL)} % for the workshop
-
-  \small
-    \begin{verbatim}
-      constant c_ONEWIRE_SDB_DEVICE : t_sdb_device := (
-         abi_class     => x"0000",
-         abi_ver_major => x"01",
-         abi_ver_minor => x"01",
-         wbd_endian    => c_sdb_endian_big,
-         wbd_width     => x"4",
-         sdb_component => (
-         addr_first  => x"0000000000000000",
-         addr_last   => x"0000000000000007",
-         product     => (
-            vendor_id => x"000000000000CE42",
-            device_id => x"00000602",
-            version   => x"00000001",
-            date      => x"20121116",
-            name      => "WB-Onewire.Control ")));
-    \end{verbatim}
-    \normalsize
-
-    \note[item]{}
-
-\end{frame}
-\end{comment}
-
-
-\begin{comment}
-%------------ FRAME --------------------------------------------------
-\begin{frame}{FMC EEPROM structure}
-
-  \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/eeprom_struct.eps}
-  \end{center}
-
-\end{frame}
-
-% explain fpga fw load (golden -> read eeprom -> final bitstream)
-
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{Modularity advantages}
-
-  \begin{block}{Easy porting}
-    \begin{itemize}
-    \item ADC-100M on SPEC = few months
-    \item 2x ADC-100M on SVEC = one week
-    \end{itemize}
-  \end{block}
-
-\end{frame}
-\end{comment}
-
 
 
 %#####################################################################
@@ -849,35 +626,8 @@
 \end{frame}
 
 
-\begin{comment}
-%------------ FRAME --------------------------------------------------
-\begin{frame}{New front-end computer platform} % Might skip this slide completly if too long
 
-  \begin{block}{Current platforms limitations}
-    \begin{itemize}
-%    \item VME64xA
-%    \item PICMG 1.3 (PCI and PCIe)
-%    \item PXI Express (supported by EN/ICE)
-    \item Difficult aintainance (PCI, PCIe)
-    \item Low bus throughput (VME, PCI)
-    \item No clock and trigger line on backplanes (VME, PCI, PCIe)
-    \end{itemize}
-  \end{block}
-
-   \begin{block}{Future platform not yet know}
-    \begin{itemize}
-    \item Just designing a carrier.
-    \item Re-useable mezzanines set.
-    \item HDL and software framework ready.
-    \end{itemize}
-  \end{block}
-
-   \note[item]{}
-
-\end{frame}
-\end{comment}
-
-
+%#####################################################################
 %############ SECTION ################################################
 \section{Conclusions}
 
@@ -915,57 +665,6 @@
 
 \end{frame}
 
-
-
-\begin{comment}
-
-\begin{frame}{Erik's for TWEPP}
-
-  \begin{itemize}
-  \item Open Hardware has many advantages.
-    \begin{itemize}
-    \item Anyone can help in developments and make improvements.
-    \item Allows to work differently with industry (design work, smaller companies).
-    \item Not tied to a single company for production and support.
-    \end{itemize}
-  \item Many things must be done right:
-    \begin{itemize}
-    \item Be Open
-    \item Make design general enough
-    \item Use standards - cool features help: White Rabbit
-    \item Be complete: from design to production test and drivers
-    \item Work intensively with industry
-    \end{itemize}
-  \item Likely not for everyone or all designs.
-  \item OHR site is practical for engineers and is stimulating.
-  \item Eight CERN designs are already commercialized.
-  \item Four years of experience show it works!
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Javier's for OKcon}
-
-  \begin{itemize}
-  \item The electronics that we support cannot be black boxes.
-  \item Open Hardware has many advantages.
-    \begin{itemize}
-    \item Anyone can help in developments and make improvements.
-    \item Allows to work differently with industry (design work, smaller companies).
-    \item Not tied to a single company for production and support.
-    \end{itemize}
-  \item {CERN Open Hardware License} provides a legal basis.
-    %\item Using standards (VME64x, PCIe, FMC, Wishbone) attracts users and improves re-usability.w
-  \item OHR site is practical, stimulating and fun for engineers.
-    %\item OHR site contains many re-usable HDL cores.
-  \item Good FOSS tools needed: help us make it happen!
-  \item Many designs being developed and several are already produced by industry.
-  \item Four years of experience show it works!
-  \end{itemize}
-
-\end{frame}
-
-\end{comment}
 
 %------------ FRAME --------------------------------------------------
 % Erik's slide with products webpages?
