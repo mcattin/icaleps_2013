@@ -108,7 +108,7 @@
   \tableofcontents
   % You might wish to add the option [pausesections]
   \note[item]{First I will explain the current situation and the reasons why we needed a new kit.}
-  \note[item]{Then I'll explain why and how we used open hardware to develop the new kit and also share a bit of our experience with open hardware.}
+  \note[item]{Then I'll explain why and how we used open hardware to develop the new kit.}
   \note[item]{Then I will present the products already available.}
   \note[item]{I will also present the architecture of the gateware inside the FPGA and the new tools and concepts we implemented.}
   \note[item]{Finally, I will talk about the future work and finish with some conclusions.}
@@ -244,7 +244,10 @@
   % Collection of building blocks
   % -> faster developments
 
-  \note[item]{}
+  \note[item]{So to make the new kit better, it is: open, modular and based on standards.}
+  \note[item]{As we have several operational platforms, we decided to go for a carrier-mezzanine concept.}
+  \note[item]{It is mainly to reduce the number of module.}
+  \note[item]{And also to design complexe carrier board only once per carrier type.}
 
 \end{frame}
 
@@ -253,7 +256,7 @@
 
   \begin{block}{Based on standards}
     \begin{itemize}
-    \item Bus standards: VME, PCI, PCIe, PXIe
+    \item Buses: VME, PCI, PCIe, PXIe
     \item FMC mezzanine card (ANSI/VITA 57.1)
     \item Wishbone FPGA internal bus
     \item Linux device drivers
@@ -270,7 +273,15 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{As I said, we are using standards to design the new kit.}
+  \note[item]{For the time being, we support the following buses: VME, PCI and PCIe, and PXIe.}
+  \note[item]{For the carrier mezzanine concept, we descided to use the FMC standard.}
+  \note[item]{And the Wishbone for the FPGA internal bus.}
+  \note[item]{Our systems are Linux based, therefore we design linux driver for our boards.}
+  \note[item]{We also contributed to sandards.}
+  \note[item]{For example after our proposition, a pipelined mode has been added to the Wishbone standard.}
+  \note[item]{We are also contributing to the Linux kernel.}
+  \note[item]{For example with FMC bus structure and ZIO, a framework for acquisition and control.}
 
 \end{frame}
 
@@ -311,7 +322,11 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{Why did we decided to go for open hardware?}
+  \note[item]{Because we don't want to support black boxes in operation.}
+  \note[item]{Because our design will become better with peer review.}
+  \note[item]{Because one of the cern's key mission is knowledge sharing and an open design have more chance to be re-used.}
+  \note[item]{And finally to have healthier relation with companies.}
 
 \end{frame}
 
@@ -338,10 +353,14 @@
    \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{In order to be able to collaborate and share, we created the open hardware repository.}
+  \note[item]{Which is a web platform, in read access for everyone.}
+  \note[item]{To have a solid legal base, we also created the CERN open hardware license.}
+  \note[item]{We created it because no existing license was suited for hardware.}
 
 \end{frame}
 
+\begin{comment}
 %============ SUB-SECTION ============================================
 \subsection{Experiences}
 
@@ -405,7 +424,6 @@
 
 \end{frame}
 
-\begin{comment}
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Better designs}
 
@@ -664,6 +682,17 @@
     \item HDL, C header and documentation automatically generated
     \end{itemize}
   \end{block}
+
+  \note[item]{}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{wbgen2: HTML documentation example}
+
+  \begin{center}
+    \includegraphics[height=7cm]{../pictures/wbgen_example.eps}
+  \end{center}
 
   \note[item]{}
 

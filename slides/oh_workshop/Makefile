@@ -1,8 +1,8 @@
-all : WECOCB01_talk.pdf
+all : oh_workshop_talk.pdf
 
 .PHONY : all clean
 
-WECOCB01_talk.pdf : WECOCB01_talk.tex
+oh_workshop_talk.pdf : oh_workshop_talk.tex
 #	pdflatex $^
 #	pdflatex $^
 
@@ -10,12 +10,12 @@ WECOCB01_talk.pdf : WECOCB01_talk.tex
 # 	bibtex
 	latex $^
 	latex $^
-	dvips -j0 WECOCB01_talk
-	ps2pdf  -dPDFX -dEmbedAllFonts=true -dSubsetFonts=true -dEPSCrop=true WECOCB01_talk.ps
+	dvips -j0 oh_workshop_talk
+	ps2pdf  -dPDFX -dEmbedAllFonts=true -dSubsetFonts=true -dEPSCrop=true oh_workshop_talk.ps
 
 
 clean :
 	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~ *.nav *.snm *.vrb *.toc
 
-show : WECOCB01_talk.pdf
+show : oh_workshop_talk.pdf
 	evince $^ &
