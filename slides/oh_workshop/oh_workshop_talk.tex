@@ -152,6 +152,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Hardware kit}
     \begin{itemize}
     \item Analog and digital I/O
@@ -160,6 +161,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Currently, October 2013}
     \begin{itemize}
     \item About 120 module types % -- with just a few engineers
@@ -195,16 +197,17 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Need for a new hardware kit}
 
+  \pause
   \begin{block}{Motivations to design a new kit}
     \begin{itemize}
-    \item Current kit hard to maintain
-    \item Obsolete components/modules
-    \item Limited stock $\rightarrow$ no new installation
-    \item Incomplete/nonexistent documentation
-    \item Large variety of modules (about 120)
-    \item Small engineer team %(spec-> design -> prod -> test -> install -> support)
-    \item No re-use strategy (pcb, hdl)
-    \item \textit{Ad hoc}/non-standard interfaces %(buses, serial protocols, etc...)
+    \item Current kit hard to maintain.
+    \item Obsolete components/modules.
+    \item Limited stock $\rightarrow$ no new installations.
+    \item Incomplete/nonexistent documentation.
+    \item Large variety of modules (about 120).
+    \item Small engineer team. %(spec-> design -> prod -> test -> install -> support)
+    \item No re-use strategy (pcb, hdl).
+    \item \textit{Ad hoc}/non-standard interfaces. %(buses, serial protocols, etc...)
     \end{itemize}
   \end{block}
 
@@ -228,11 +231,13 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Carrier-mezzanine concept}
     \begin{itemize}
     \item Generic platform-dependent carriers
     \item Specific platform-independent mezzanines
     \item Reduce number of supported modules
+    \item Only one complex design per platform
     \end{itemize}
   \end{block}
 
@@ -256,18 +261,19 @@
 
   \begin{block}{Based on standards}
     \begin{itemize}
-    \item Buses: VME, PCI, PCIe, PXIe
-    \item FMC mezzanine card (ANSI/VITA 57.1)
-    \item Wishbone FPGA internal bus
-    \item Linux device drivers
+    \item Platform bus: \textbf{VME, PCI, PCIe, PXIe}
+    \item \textbf{FMC} (FPGA Mezzanine Card, ANSI/VITA 57.1)
+    \item \textbf{Wishbone} FPGA internal bus
+    \item \textbf{Linux} device drivers
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Contribute to standards}
     \begin{itemize}
-    \item Wishbone pipelined mode: \textbf{Wishbone spec} Rev.B4 (2010)
+    \item Wishbone pipelined mode: \textbf{Wishbone} spec Rev.B4 (2010)
     \item FMC bus Linux driver structure: in \textbf{Linux v3.11}
-    \item ZIO Linux framework for DAQ and CTL hardware: \\ \textbf{RFC} made \textbf{to Linux} Kernel list
+    \item ZIO Linux framework for DAQ and CTL hardware: \\ \textbf{RFC} made to \textbf{Linux} Kernel list
 %    \item White Rabbit: will be in \textbf{IEEE 1588} High Accuracy profile
 %    \item Wishbone IP core detection scheme, used in FMC bus
     \end{itemize}
@@ -401,9 +407,6 @@
 
 %#####################################################################
 %############ SECTION ################################################
-%\section{New kit design}
-
-%============ SUB-SECTION ============================================
 \section{Open Hardware products}
 
 \subsection*{} % dummy subsection to display dots
@@ -420,15 +423,17 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Carriers}
     \begin{itemize}
-    \item Two fully supported (SPEC, SVEC)
-    \item Seven other carriers (SPEXI, VXS, AMC, stand-alone)
+    \item Three fully supported (SPEC, SVEC, SPEXI)
+    \item Six other carriers (VXS, AMC, stand-alone)
     \end{itemize}
   \end{block}
 
   % VFC, PFC, AFC, RHINO, VXS DSP carrier, Stand-alone 18-slot FMC carrier
 
+  \pause
   \begin{block}{Mezzanines}
     \begin{itemize}
     \item Four fully supported (ADC-100M, TDC, DIO-5ch, FD)
@@ -447,10 +452,10 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Commercialised in Spain, The Netherlands \& Poland}
+\begin{frame}{SVEC - Simple VME FMC Carrier}{Commercialised in Germany}
 
   \begin{center}
-    \includegraphics[height=7cm]{../pictures/spec_v4.eps}
+    \includegraphics[height=7cm]{../pictures/svec.eps}
   \end{center}
 
   \note[item]{}
@@ -458,10 +463,10 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{SVEC - Simple VME FMC Carrier}{Commercialised in Germany}
+\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Commercialised in Spain, The Netherlands \& Poland}
 
   \begin{center}
-    \includegraphics[height=7cm]{../pictures/svec.eps}
+    \includegraphics[height=7cm]{../pictures/spec_v4.eps}
   \end{center}
 
   \note[item]{}
@@ -540,7 +545,8 @@
 \end{frame}
 
 
-%============ SUB-SECTION ============================================
+%#####################################################################
+%############ SECTION ################################################
 \section{Gateware architecture}
 
 \subsection*{} % dummy subsection to display dots
@@ -580,7 +586,9 @@
 
 \end{frame}
 
-%============ SUB-SECTION ============================================
+
+%#####################################################################
+%############ SECTION ################################################
 \section{Tools and concepts}
 
 \subsection*{} % dummy subsection to display dots
@@ -588,19 +596,21 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Gateware design tools}
 
+  \pause
   \begin{block}{hdlmake}
     \begin{itemize}
-    \item Project structure described in \textit{Manifest} files
-    \item Solves dependencies (fetches remote ones)
-    \item Generates \textit{Makefile} for synthesis and simulation
+    \item Generates \textbf{Makefiles} for synthesis and simulation.
+    \item Project structure described in \textbf{Manifest} files.
+    \item Solves dependencies (fetches remote ones).
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{wbgen2: Wishbone slave generator}
     \begin{itemize}
-    \item Generate register, RAM, FIFO, interrupt controller
-    \item Structure described in a single text file
-    \item HDL, C header and documentation automatically generated
+    \item Generates registers, RAM, FIFO, interrupt controller.
+    \item Structure described in a single text file.
+    \item Automatically generates HDL source, C header and documentation.
     \end{itemize}
   \end{block}
 
@@ -624,11 +634,11 @@
 
   \begin{block}{PTS: Production Test Suite}
     \begin{itemize}
-    \item Functional test only
-    \item Dedicated test setup per board
-    \item Software framework to run the tests (Python)
-    \item Calibration data stored in FMC EEPROM
-    \item Log files (life-cycle management)
+    \item Performs functional tests.
+    \item Dedicated test setup per board.
+    \item Software framework to run the tests (Python).
+    \item Stores calibration data in FMC EEPROM.
+    \item Generates log files (life-cycle management).
     \end{itemize}
   \end{block}
 
@@ -655,20 +665,22 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{New concepts}
 
+  \pause
   \begin{block}{SDB: Self Describing Bus}
     \begin{itemize}
-    \item Series of predefined structures
-    \item Meta-data about cores
-    \item Allows software to know about gateware architecture
+    \item Series of predefined structures.
+    \item Contains meta-data about HDL cores.
+    \item Allows software to know about gateware architecture.
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{SDB File System}
     \begin{itemize}
-    \item Based on SDB data structures
-    \item Easy to parse (e.g. for embedded processor)
-    \item Library and tools available % (generate, read)
-    \item Used in the FMC EEPROM
+    \item Based on SDB data structures.
+    \item Easy to parse (e.g. for embedded processor).
+    \item Library and tools available. % (generate, read)
+    \item Used in the FMC EEPROM.
     \end{itemize}
   \end{block}
 
@@ -745,12 +757,12 @@
 
 %#####################################################################
 %############ SECTION ################################################
-\section{Perspectives}
+\section{Conclusions}
 
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Future work}
+\begin{frame}{Perspectives}
 
   \begin{block}{Consolidate our designs}
     \begin{itemize}
@@ -761,6 +773,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Facilitate sharing with FOSS EDA tools}
     % FOSS = Free Open Source Software, EDA = Electronic Design Automation
     \begin{itemize}
@@ -809,36 +822,36 @@
 \end{comment}
 
 
-
-%############ SECTION ################################################
-\section{Conclusions}
-
-\subsection*{} % dummy subsection to display dots
-
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Conclusions}
 
   \begin{block}{}
     \begin{itemize}
+      \pause
     \item CERN's FMC kit is not only a set of hardware modules
       \begin{itemize}
       \item Collection of HDL cores
-      \item Linux device driver and test program
+      \item Linux device driver, libraries and test program
       \item Production test system
       \item Tools and concepts %(wbgen, hdlmake, )
       \item Commercially available (sometimes from several sources)
       \end{itemize}
-    \item Open Hardware has many advantages.
+      \pause
+     \item Open Hardware has many advantages.
       \begin{itemize}
       \item Anyone can help in developments and make improvements.
       \item Allows to work differently with industry. % (design work, smaller companies).
       \item Not tied to a single company for production and support.
       \end{itemize}
+      \pause
     \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
+      \pause
     \item OHR site is practical for engineers and is stimulating.
 %    \item OHR site contains many re-usable HDL cores.
+      \pause
     \item Good FOSS tools needed to facilitate sharing.
 %    \item Many designs being developed and several are already produced by industry.
+      \pause
     \item Four years of experience show it works!
     \end{itemize}
   \end{block}
