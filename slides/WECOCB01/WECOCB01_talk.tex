@@ -3,6 +3,7 @@
 \setbeamertemplate{navigation symbols}{}
 \usetheme{Warsaw}
 %\setbeameroption{show notes}
+%\setbeameroption{show only notes}
 \setbeameroption{hide notes}
 
 %\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
@@ -84,20 +85,28 @@
 
 \begin{document}
 
+%------------ FRAME --------------------------------------------------
 \begin{frame}
+
   \titlepage
-  \note[item]{Introduce myself.}
-  \note[item]{I'm going to talk about the CERN's FMC kit.}
+
+  \note[item]{Good morning everyone.}
+  \note[item]{Today I'm going to present the CERN's FMC kit.}
+
 \end{frame}
 
+%------------ FRAME --------------------------------------------------
 \begin{frame}{Outline}
+
   \tableofcontents
   % You might wish to add the option [pausesections]
+
   \note[item]{First I will explain the current situation and the reasons why we needed a new kit.}
-  \note[item]{Then I'll explain why and how we used open hardware to develop the new kit.}
-  \note[item]{Then I will present the products already available.}
-  \note[item]{I will also present the architecture of the gateware inside the FPGA and the new tools and concepts we implemented.}
-  \note[item]{Finally, I will talk about the future work and finish with some conclusions.}
+  \note[item]{Then I'll quicky introduce Open Hardware and HOW we use it to develop the new kit.}
+  \note[item]{Then I will present our Open Hardware products.}
+  \note[item]{I will also present the architecture of the gateware inside the FPGA and the new tools and concepts we developed.}
+  \note[item]{And I will finish with some perspetives and conclusions.}
+
 \end{frame}
 
 
@@ -129,6 +138,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{CERN Beams Controls group - BE/CO} % HT section?
 
+  \pause
   \begin{block}{Hardware \& Timing section responsible for}
     \begin{itemize}
     \item Specification, design, procurement and operation of electronic modules
@@ -136,6 +146,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Hardware kit}
     \begin{itemize}
     \item Analog and digital I/O
@@ -144,6 +155,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Currently, October 2013}
     \begin{itemize}
     \item About 120 module types % -- with just a few engineers
@@ -151,32 +163,35 @@
     \end{itemize}
   \end{block}
 
+  \note[item]{So, why a new kit?}
+  \note[item]{Let me first introduce the Hardware and Timing section.}
   \note[item]{The hardware and timing section of the beams controls group is responsible for the whole chain of electronics modules design; from specifiction to operation in the accelerators.}
-  \note[item]{Another mission of the section is to provide Linux drivers, with libraries and test programs for the hardware boards.}
-  \note[item]{The hardware kit the section has to maintain contains a large variety of modules: analog and digital I/O, level converters, timing modules, etc...}
-  \note[item]{There is more than one hundred different modules and most of them are custom designs.}
+  \note[item]{The section is also responsible to provide Linux drivers, with libraries and test programs for the hardware boards.}
+  \note[item]{The hardware kit or the set of modules we have to maintain contains modules like: analog and digital I/O, level converters, timing modules, etc...}
+  \note[item]{And currently we have more than 100 different modules and most of them are custom designs.}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Why a new kit?}
 
+  \pause
   \begin{block}{Motivations to design a new kit}
     \begin{itemize}
-    \item Current kit hard to maintain
-    \item Obsolete components/modules
-    \item Limited stock $\rightarrow$ no new installation
-    \item Incomplete/nonexistent documentation
-    \item Large variety of modules (about 120)
-    \item Small engineer team %(spec-> design -> prod -> test -> install -> support)
-    \item No re-use strategy (pcb, hdl)
-    \item \textit{Ad hoc}/non-standard interfaces %(buses, serial protocols, etc...)
+    \item Current kit hard to maintain.
+    \item Obsolete components/modules.
+    \item Limited stock $\rightarrow$ no new installations.
+    \item Incomplete/nonexistent documentation.
+    \item Large variety of modules (about 120).
+    \item Small engineer team. %(spec-> design -> prod -> test -> install -> support)
+    \item No re-use strategy (pcb, hdl).
+    \item \textit{Ad hoc}/non-standard interfaces. %(buses, serial protocols, etc...)
     \end{itemize}
   \end{block}
 
-  \note[item]{So with such a big kit of modules, why do we design a new one?}
+  \note[item]{So with such a big kit, why do we design a new one?}
   \note[item]{The main reasons are because the current kit is hard to maintain.}
-  \note[item]{It contains a lot of obsolete componants and modules.}
+  \note[item]{It contains a lot of obsolete componants or modules.}
   \note[item]{Most of the time the documentation is incomplete or lost.}
   \note[item]{Our engineer team is very small to support this large varierty of modules.}
   \note[item]{And finally, we didn't have any re-use strategy and most of the interfaces of old modules are non-standard.}
@@ -186,6 +201,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{New approach}
 
+  \pause
   \begin{block}{Principles}
     \begin{itemize}
     \item Openness of designs
@@ -194,33 +210,37 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Carrier-mezzanine concept}
     \begin{itemize}
     \item Generic platform-dependent carriers
     \item Specific platform-independent mezzanines
     \item Reduce number of supported modules
+    \item Only one complexe design per platform
     \end{itemize}
   \end{block}
 
-  \note[item]{So to make the new kit better, it is: open, modular and based on standards.}
+  \note[item]{So to make the new kit better, we followed some principles like: keeping designs open and modular and based on standards.}
   \note[item]{As we have to support several platforms, we decided to go for a carrier-mezzanine concept.}
-  \note[item]{It is mainly to reduce the number of module.}
-  \note[item]{And also to design complexe carrier board only once per platform.}
+  \note[item]{this will allow us to reduce the number of module.}
+  \note[item]{And also to design a complexe carrier board only once for each platform.}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Use standards}
 
+  \pause
   \begin{block}{Based on standards}
     \begin{itemize}
-    \item Buses: VME, PCI, PCIe, PXIe
-    \item FMC mezzanine card (ANSI/VITA 57.1)
+    \item Platform bus: VME, PCI, PCIe, PXIe
+    \item FMC (FPGA Mezzanine Card, ANSI/VITA 57.1)
     \item Wishbone FPGA internal bus
     \item Linux device drivers
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Contribute to standards}
     \begin{itemize}
     \item Wishbone pipelined mode: \textbf{Wishbone spec} Rev.B4 (2010)
@@ -229,11 +249,11 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{As I said, we are using standards to design the new kit.}
-  \note[item]{For the time being, we support the following buses: VME, PCI and PCIe, and PXIe.}
-  \note[item]{For the carrier mezzanine concept, we descided to use the FMC standard.}
-  \note[item]{And the Wishbone for the FPGA internal bus.}
-  \note[item]{Our systems are Linux based, therefore we design linux driver for our boards.}
+  \note[item]{As I said, our new kit is based on standards.}
+  \note[item]{For the platform bus we use: VME, PCI, PCIe, and PXIe.}
+  \note[item]{For the carrier mezzanine concept, we use the FMC standard.}
+  \note[item]{For the FPGA internal bus we use Wishbone.}
+  \note[item]{And for the drivers we use Linux.}
   \note[item]{We also contributed to sandards.}
   \note[item]{For example after our proposition, a pipelined mode has been added to the Wishbone standard.}
   \note[item]{We are also contributing to the Linux kernel.}
@@ -251,18 +271,21 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Why we use Open Hardware}
 
+  \pause
   \begin{block}{Fully specify the design}
     \begin{itemize}
     \item Avoid black boxes.
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Better designs}
     \begin{itemize}
     \item Peer review by experts, including companies.
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Knowledge sharing by design re-use}
     \begin{itemize}
     \item One of CERN's key mission.
@@ -270,6 +293,7 @@
     \end{itemize}
   \end{block}
 
+  \pause
   \begin{block}{Healthier relationship with companies}
     \begin{itemize}
     \item No vendor-locked situations.
@@ -315,9 +339,6 @@
 
 %#####################################################################
 %############ SECTION ################################################
-%\section{Kit design}
-
-%============ SUB-SECTION ============================================
 \section[OH products]{Open Hardware products}
 %?? CERN Open Hardware products
 
@@ -459,7 +480,8 @@
 \end{frame}
 
 
-%============ SUB-SECTION ============================================
+%#####################################################################
+%############ SECTION ################################################
 \section{Gateware architecture}
 
 \subsection*{} % dummy subsection to display dots
@@ -508,7 +530,8 @@
 \end{frame}
 
 
-%============ SUB-SECTION ============================================
+%#####################################################################
+%############ SECTION ################################################
 \section{Tools and concepts}
 
 \subsection*{} % dummy subsection to display dots
@@ -619,7 +642,6 @@
 \end{frame}
 
 
-
 %#####################################################################
 %############ SECTION ################################################
 \section{Conclusions}
@@ -661,8 +683,6 @@
 
 \end{frame}
 
-
-
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Conclusions}
 
@@ -697,7 +717,7 @@
 
 
 %------------ FRAME --------------------------------------------------
-% Erik's slide with products webpages?
+%?? Erik's slide with products webpages?
 
 
 
