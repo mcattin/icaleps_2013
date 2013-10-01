@@ -101,7 +101,7 @@
 \begin{frame}
   \titlepage
   \note[item]{Introduce myself.}
-  \note[item]{I'm going to talk about the CERN's FMC kit.}
+  \note[item]{I'm going to talk about Open Hardware design at CERN.}
 \end{frame}
 
 \begin{frame}{Outline}
@@ -136,7 +136,7 @@
 
 %#####################################################################
 %############ SECTION ################################################
-\section{New hardware kit}
+\section{Introduction}
 
 \subsection*{} % dummy subsection to display dots
 
@@ -193,7 +193,7 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Why a new kit?}
+\begin{frame}{Need for a new hardware kit}
 
   \begin{block}{Motivations to design a new kit}
     \begin{itemize}
@@ -401,10 +401,12 @@
 
 %#####################################################################
 %############ SECTION ################################################
-\section{Kit design}
+%\section{New kit design}
 
 %============ SUB-SECTION ============================================
-\subsection{Open Hardware products}
+\section{Open Hardware products}
+
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Open Hardware products}
@@ -539,7 +541,9 @@
 
 
 %============ SUB-SECTION ============================================
-\subsection{Gateware architecture}
+\section{Gateware architecture}
+
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Gateware architecture}
@@ -569,7 +573,7 @@
 \begin{frame}{Example: FMC-ADC gateware architecture}
 
   \begin{center}
-    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
+    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color.eps}
   \end{center}
 
   \note[item]{}
@@ -577,7 +581,9 @@
 \end{frame}
 
 %============ SUB-SECTION ============================================
-\subsection{Tools and concepts}
+\section{Tools and concepts}
+
+\subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Gateware design tools}
@@ -599,6 +605,17 @@
   \end{block}
 
   \note[item]{}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{wbgen2: HTML documentation example}
+
+  \begin{center}
+    \includegraphics[height=7cm]{../pictures/wbgen_example.eps}
+  \end{center}
+
+  \note[item]{This is a example of HTML documentation generated be wbgen2.}
 
 \end{frame}
 
@@ -654,6 +671,17 @@
     \item Used in the FMC EEPROM
     \end{itemize}
   \end{block}
+
+  \note[item]{}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{Example: SDB records in Wishbone crossbar}
+
+  \begin{center}
+    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
+  \end{center}
 
   \note[item]{}
 
