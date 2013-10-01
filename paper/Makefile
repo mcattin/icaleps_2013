@@ -15,4 +15,4 @@ clean :
 	rm -f *.ps *.pdf *.dat *.log *.out *.aux *.dvi *~
 
 show : WECOCB01.pdf
-	evince $^
+	evince $^ &
