@@ -360,18 +360,11 @@
   % + others more specific mezzanines
 
   \note[item]{The new hardware kit is not only about hardware boards.}
-  \note[item]{}
-
-\end{frame}
-
-%------------ FRAME --------------------------------------------------
-\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Commercialised in Spain, The Netherlands \& Poland}
-
-  \begin{center}
-    \includegraphics[height=7cm]{../pictures/spec_v4.eps}
-  \end{center}
-
-  \note[item]{}
+  \note[item]{You can see it like a set of products.}
+  \note[item]{With FPGA gateware, Linux driver and test system.}
+  \note[item]{So far we fully support 2 carrier, one VME and one PCIe.}
+  \note[item]{And 4 mezzanines, an ADC 100MSPS, a TDC, a Digital IO and a fine delay.}
+  \note[item]{But there are many more designs available on the open hardware repository website.}
 
 \end{frame}
 
@@ -382,7 +375,18 @@
     \includegraphics[height=7cm]{../pictures/svec.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{This is our VME carrier, with 2 FMC slots.}
+
+\end{frame}
+
+%------------ FRAME --------------------------------------------------
+\begin{frame}{SPEC - Simple PCI Express FMC carrier}{Commercialised in Spain, The Netherlands \& Poland}
+
+  \begin{center}
+    \includegraphics[height=7cm]{../pictures/spec_v4.eps}
+  \end{center}
+
+  \note[item]{This is our PCIe carrier, with only 1 FMC slot.}
 
 \end{frame}
 
@@ -393,7 +397,7 @@
     \includegraphics[height=7cm]{../pictures/spexi_v0.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{This a PXIe carrier based on the PCIe.}
 
 \end{frame}
 
@@ -404,7 +408,7 @@
     \includegraphics[height=6.5cm]{../pictures/fmc-tdc.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{This is the TDC mezzanine, developed in collaboration with other groups at CERN.}
 
 \end{frame}
 
@@ -415,7 +419,7 @@
     \includegraphics[height=6.5cm]{../pictures/fmc-adc-100m.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{And this is our ADC mezzanine, with oscilloscope-like analogue front-end}
 
 \end{frame}
 
@@ -450,7 +454,9 @@
     \caption{eight CERN OH designs found producers and users}
   \end{table}
 
-  \note[item]{}
+  \note[item]{Here is a summary of CERN designs commercially available.}
+  \note[item]{As you can see, most of the boards have more than one producer.}
+  \note[item]{And for the more generic boards, the number of user is quite big.}
 
 \end{frame}
 
@@ -478,7 +484,11 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{I will talk now about the gateware architecture.}
+  \note[item]{We choose the Wishbone bus to interconnect the different blocks in the FPGA.}
+  \note[item]{Because it's an open standard.}
+  \note[item]{It's simple.}
+  \note[item]{And a large collection of core already exists.}
 
 \end{frame}
 
@@ -489,7 +499,11 @@
     \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{Here is an example of the Wishbone architecture.}
+  \note[item]{It represents the FMC-ADC gateware for a PCIe carrier.}
+  \note[item]{Here is the the PCIe interface, a first Wishbone bus to access the configuration an status registers.}
+  \note[item]{The memory mapping is made using crossbar core, which also contains SDB records, I'll come to that later.}
+  \note[item]{And there is also two other buses, one to write data to memory and the other one to read the data via DMA.}
 
 \end{frame}
 
@@ -502,21 +516,24 @@
 
   \begin{block}{hdlmake}
     \begin{itemize}
-    \item Project structure described in \textit{Manifest} files
-    \item Solves dependencies (fetches remote ones)
-    \item Generates \textit{Makefile} for synthesis and simulation
+    \item Generates \textit{Makefile} for synthesis and simulation.
+    \item Solves dependencies (fetches remote ones).
+    \item Project structure described in \textit{Manifest} files.
     \end{itemize}
   \end{block}
 
   \begin{block}{wbgen2: Wishbone slave generator}
     \begin{itemize}
-    \item Generate register, RAM, FIFO, interrupt controller
-    \item Structure described in a single text file
-    \item HDL, C header and documentation automatically generated
+    \item Generates registers, RAM, FIFO, interrupt controller.
+    \item Structure described in a single text file.
+    \item Automatically generates HDL source, C header and documentation.
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{To help with the gateware design, we also developed some tools.}
+  \note[item]{The first one is hdlmake. It allows to generate Makefile for sythesis and simulation from a Manifest file describing the project structure.}
+  \note[item]{The second one is wbgen2, which is a Wishbone slave generator.}
+  \note[item]{From a single text file, it generate the HDL and C header source and also the documentation.}
 
 \end{frame}
 
@@ -527,7 +544,7 @@
     \includegraphics[height=7cm]{../pictures/wbgen_example.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{This is a example of HTML documentation generated be wbgen2.}
 
 \end{frame}
 
@@ -536,11 +553,11 @@
 
   \begin{block}{PTS: Production Test Suite}
     \begin{itemize}
-    \item Functional test only
-    \item Dedicated test setup per board
-    \item Software framework to run the tests (Python)
-    \item Calibration data stored in FMC EEPROM
-    \item Log files (life-cycle management)
+    \item Perform functional test only.
+    \item Dedicated test setup per board.
+    \item Software framework to run the tests (Python).
+    \item Stores calibration data in FMC EEPROM.
+    \item Generates log files (life-cycle management).
     \end{itemize}
   \end{block}
 
@@ -549,7 +566,10 @@
 
 % Warranty, repair of faulty boards
 
-  \note[item]{}
+  \note[item]{For all the boards of our kit, we also developed a test system.}
+  \note[item]{It's only a functional test.}
+  \note[item]{We developed a software framework in Python.}
+  \note[item]{After pasing on the test system, the boards are ready to be put in stock.}
 
 \end{frame}
 
@@ -560,7 +580,10 @@
     \includegraphics[height=6.5cm]{../pictures/pts_rack.eps}
   \end{center}
 
-  \note[item]{}
+  \note[item]{This is an example of a test system. This one is for VME boards.}
+  \note[item]{This is where we insert the board to test.}
+  \note[item]{We can see here a bar-code reader, to scan the serial number of each board.}
+  \note[item]{And this is a laptop that manages system.}
 
 \end{frame}
 
@@ -569,22 +592,27 @@
 
   \begin{block}{SDB: Self Describing Bus}
     \begin{itemize}
-    \item Series of predefined structures
-    \item Meta-data about cores
-    \item Allows software to know about gateware architecture
+    \item Series of predefined structures.
+    \item Contains meta-data about HDL cores.
+    \item Allows software to know about gateware architecture.
     \end{itemize}
   \end{block}
 
   \begin{block}{SDB File System}
     \begin{itemize}
-    \item Based on SDB data structures
-    \item Easy to parse (e.g. for embedded processor)
-    \item Library and tools available % (generate, read)
-    \item Used in the FMC EEPROM
+    \item Based on SDB data structures.
+    \item Easy to parse (e.g. for embedded processor).
+    \item Library and tools available. % (generate, read)
+    \item Used in the FMC EEPROM.
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{During the kit design we implemented some new concepts.}
+  \note[item]{This first one is SDB, for Self Describing Bus.}
+  \note[item]{It's a set of structures describing the gateware achitecture.}
+  \note[item]{It allow the driver to know about the gateware just by accessing it.}
+  \note[item]{The second concept is a file system derived from SDB.}
+  \note[item]{It's a very simple filesystem and it's used for example in the FMC EEPROM.}
 
 \end{frame}
 
@@ -621,7 +649,13 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{}
+  \note[item]{For the last 4 years the focus was on make the kit comecrially available, but now we still have to consolidate the design.}
+  \note[item]{And also help companies selling our board to provide support to other users.}
+  \note[item]{Finally, we also contribute to Free Open Source Software EDA tools.}
+  \note[item]{Because the EDA tools license are expensive and the different tools don't interoperate.}
+  \note[item]{And the FOSS are not usable for complex designs.}
+  \note[item]{So we contribute to the Icarus simulator to add support for VHDL and SystemVerilog.}
+  \note[item]{And also to KiCAD a PCB design tool.}
 
 \end{frame}
 
