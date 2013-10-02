@@ -621,10 +621,16 @@
 
   \begin{block}{wbgen2: Wishbone slave generator}
     \begin{itemize}
-    \item Generates registers, RAM, FIFO, interrupt controller.
     \item Describes structure in a single text file.
     \item Automatically generates HDL source, C header and documentation.
+    \item Generates registers, RAM, FIFO, interrupt controller.
     \end{itemize}
+  \end{block}
+
+  \begin{block}{}
+    \begin{center}
+    Both available on ohwr.org
+    \end{center}
   \end{block}
 
   \note[item]{}
@@ -688,15 +694,9 @@
     \item Allows software to know about gateware architecture
     \item Series of predefined structures
     \item Contains meta-data about HDL cores
-    \end{itemize}
-  \end{block}
-
-  \begin{block}{SDB File System}
-    \begin{itemize}
-    \item Based on SDB data structures
-    \item Easy to parse (e.g. for embedded processor)
-    \item Library and tools available % (generate, read)
-    \item Used in the FMC EEPROM
+      \begin{itemize}
+      \item Vendor \& device ID, version, address range
+      \end{itemize}
     \end{itemize}
   \end{block}
 
@@ -742,6 +742,25 @@
 
 \end{frame}
 
+%------------ FRAME --------------------------------------------------
+\begin{frame}{New concepts}
+
+  \begin{block}{SDB File System}
+    \begin{itemize}
+    \item Based on SDB data structures
+    \item Easy to parse (e.g. for embedded processor)
+    \item Library and tools available (generate, parse)
+    \item Used in an EEPROM on each mezzanine
+      \begin{itemize}
+      \item Mezzanine identification (type, serial number)
+      \item Calibration data
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+
+  \note[item]{}
+
+\end{frame}
 
 
 \begin{comment}
@@ -789,15 +808,14 @@
     \end{itemize}
   \end{block}
 
-  \begin{block}{Facilitate sharing with FOSS EDA tools}
-    % FOSS = Free Open Source Software, EDA = Electronic Design Automation
+  \begin{block}{Future platform}
     \begin{itemize}
-    \item Tools are expensive and do not interoperate.
-    \item Existing FOSS tools not usable for complex designs.
-    \item We contribute to the development of FOSS tools:
+    \item Current platform limitations
+    \item Ready for a new platform
       \begin{itemize}
-      \item Extension of \textbf{Icarus} Verilog simulator with VHDL and \\ SystemVerilog support.
-      \item Enhancement of \textbf{KiCAD} (schematics \& PCB editor).
+%      \item Just designing a carrier
+      \item Re-useable mezzanines set
+      \item HDL and software framework ready
       \end{itemize}
     \end{itemize}
   \end{block}
@@ -844,23 +862,27 @@
     \begin{itemize}
     \item CERN's FMC kit is not only a set of hardware modules.
       \begin{itemize}
-      \item HDL cores, drivers, test system, tools
-      \item Commercially available (sometimes from several sources)
-      \end{itemize}
-    \item Open Hardware has many advantages.
-      \begin{itemize}
-      \item Anyone can help in developments and make improvements.
-%      \item Allows to work differently with industry. % (design work, smaller companies).
-      \item Not tied to a single company for production and support.
-      \end{itemize}
-%    \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
-    \item OHR site is practical for engineers and is stimulating.
-%    \item Eight CERN designs are already commercialized.
+      \item Collection of HDL cores
+      \item Linux device driver, libraries and test program
+      \item Production test system
+      \item Tools and concepts %(wbgen, hdlmake, )
+       \end{itemize}
+    \item Eight CERN designs are already commercialized.
+%    \item Commercially available (sometimes from several sources)
+    \item Using standards improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
     \item New users and collaborations are welcome.
+
+%    \item Open Hardware has many advantages.
+%      \begin{itemize}
+%      \item Anyone can help in developments and make improvements.
+%      \item Allows to work differently with industry. % (design work, smaller companies).
+%      \item Not tied to a single company for production and support.
+%      \end{itemize}
+%    \item OHR site is practical for engineers and is stimulating.
 %    \item OHR site contains many re-usable HDL cores.
 %    \item Good FOSS tools needed to facilitate sharing.
 %    \item Many designs being developed and several are already produced by industry.
-    \item Four years of experience show it works!
+%    \item Four years of experience show it works!
     \end{itemize}
   \end{block}
 
