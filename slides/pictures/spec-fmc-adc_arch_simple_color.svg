@@ -2886,9 +2886,9 @@
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1173"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-height="1123"
+     inkscape:window-x="1920"
+     inkscape:window-y="25"
      inkscape:window-maximized="1"
      inkscape:snap-grids="true"
      inkscape:snap-bbox="true"
@@ -3607,9 +3607,9 @@
        transform="matrix(0,-1,1,0,0,0)"><tspan
          id="tspan3248-1"
          sodipodi:role="line"
-         x="-354.96146"
+         x="-352.87552"
          y="-603.42523"
-         style="font-size:12px">FMC connector (LPC)</tspan></text>
+         style="font-size:12px">FMC connector</tspan></text>
     <g
        id="g13463"
        transform="translate(102.6445,-18.602447)">

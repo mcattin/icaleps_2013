@@ -91,7 +91,10 @@
   \titlepage
 
   \note[item]{Good morning everyone.}
-  \note[item]{Today I'm going to present the CERN's FMC kit.}
+  \note[item]{I work at CERN in the Beam Controls group.}
+  \note[item]{We provide electronics to other groups.}
+  \note[item]{Four year ago we changed the way we develop hardware.}
+  \note[item]{I will present the FMC kit we develop using new methods.}
 
 \end{frame}
 
@@ -101,11 +104,11 @@
   \tableofcontents
   % You might wish to add the option [pausesections]
 
-  \note[item]{First I will explain the current situation and the reasons why we needed a new kit.}
-  \note[item]{Then I'll quickly introduce Open Hardware and HOW we use it to develop the new kit.}
+  \note[item]{First I will a new kit.}
+  \note[item]{Then I will introduce Open Hardware and HOW we use it.}
   \note[item]{Then I will present our Open Hardware products.}
   \note[item]{I will also present the architecture of the gateware inside the FPGA and the new tools and concepts we developed.}
-  \note[item]{And I will finish with some perspectives and conclusions.}
+  \note[item]{And I will finish with some conclusions.}
 
 \end{frame}
 
@@ -136,16 +139,15 @@
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{CERN Beams Controls group - BE/CO} % HT section?
+\begin{frame}{CERN Beams Controls group}
 
-  \begin{block}{Hardware \& Timing section responsible for}
+  \begin{block}{Responsible for}
     \begin{itemize}
     \item Specification, design, procurement and operation of electronic modules
     \item Linux device drivers, C/C++ libraries, test programs
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Hardware kit}
     \begin{itemize}
     \item Analog and digital I/O
@@ -154,7 +156,6 @@
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Currently, October 2013}
     \begin{itemize}
     \item About 120 module types % -- with just a few engineers
@@ -171,10 +172,10 @@
 
 \end{frame}
 
+\begin{comment}
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Why a new kit?}
 
-  \pause
   \begin{block}{Motivations to design a new kit}
     \begin{itemize}
     \item Current kit hard to maintain.
@@ -182,7 +183,6 @@
     \item Limited stock $\rightarrow$ no new installations.
     \item Incomplete/nonexistent documentation.
     \item Large variety of modules (about 120).
-    \item Small engineer team. %(spec-> design -> prod -> test -> install -> support)
     \item No re-use strategy (pcb, hdl).
     \item \textit{Ad hoc}/non-standard interfaces. %(buses, serial protocols, etc...)
     \end{itemize}
@@ -196,25 +196,32 @@
   \note[item]{And finally, we didn't have any re-use strategy and most of the interfaces of old modules are non-standard.}
 
 \end{frame}
+\end{comment}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{New approach}
+\begin{frame}{Why a new kit?}
 
-  \begin{block}{Principles}
+  \begin{block}{Motivations to design a new kit}
     \begin{itemize}
-    \item Openness of designs
-    \item Modularity and re-usability
-    \item Compliance with existing standards
+    \item Obsolete components/modules
+    \item Limited stock $\rightarrow$ no new installations
+    \item Incomplete/nonexistent documentation
     \end{itemize}
   \end{block}
 
-  \pause
+  \begin{block}{New approach}
+    \begin{itemize}
+    \item Open and modular designs
+    \item Compliant with existing standards
+    \end{itemize}
+  \end{block}
+
   \begin{block}{Carrier-mezzanine concept}
     \begin{itemize}
-    \item Generic platform-dependent carriers
-    \item Specific platform-independent mezzanines
+%    \item Generic platform-dependent carriers
+%    \item Specific platform-independent mezzanines
     \item Reduce number of supported modules
-    \item Only one complex design per platform
+    \item Only one complex design per platform (carrier)
     \end{itemize}
   \end{block}
 
@@ -226,23 +233,22 @@
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Use standards}
+\begin{frame}{Use of standards}
 
   \begin{block}{Based on standards}
     \begin{itemize}
-    \item Platform bus: \textbf{VME, PCI, PCIe, PXIe}
-    \item \textbf{FMC} (FPGA Mezzanine Card, ANSI/VITA 57.1)
-    \item \textbf{Wishbone} FPGA internal bus
-    \item \textbf{Linux} device drivers
+    \item Platform bus: VME, PCI, PCIe, PXIe
+    \item FMC (FPGA Mezzanine Card, ANSI/VITA 57.1)
+    \item Wishbone FPGA internal bus
+    \item Linux device drivers
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Contribute to standards}
     \begin{itemize}
-    \item Wishbone pipelined mode: \textbf{Wishbone} spec Rev.B4 (2010)
-    \item FMC bus Linux driver structure: in \textbf{Linux v3.11}
-    \item ZIO Linux framework for DAQ and CTL hardware: \\ \textbf{RFC} made to \textbf{Linux} Kernel list
+    \item Wishbone pipelined mode: Wishbone spec Rev.B4 (2010)
+    \item FMC bus Linux driver structure: in Linux v3.11
+    \item ZIO Linux framework for DAQ and CTL hardware: \\ RFC made to Linux Kernel list
     \end{itemize}
   \end{block}
 
@@ -252,9 +258,7 @@
   \note[item]{For the FPGA internal bus we use Wishbone.}
   \note[item]{And for the drivers we use Linux.}
   \note[item]{We also contributed to standards.}
-  \note[item]{For example after our proposition, a pipelined mode has been added to the Wishbone standard.}
-  \note[item]{We are also contributing to the Linux kernel.}
-  \note[item]{For example with FMC bus structure and ZIO, a framework for acquisition and control.}
+  \note[item]{For example a pipeline mode for Wishbone and new features in the Linux kernel.}
 
 \end{frame}
 
@@ -268,21 +272,18 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Why we use Open Hardware}
 
-  \pause
   \begin{block}{Fully specify the design}
     \begin{itemize}
     \item Avoid black boxes.
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Better designs}
     \begin{itemize}
     \item Peer review by experts, including companies.
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Knowledge sharing by design re-use}
     \begin{itemize}
     \item One of CERN's key mission.
@@ -290,7 +291,6 @@
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Healthier relationship with companies}
     \begin{itemize}
     \item No vendor-locked situations.
@@ -317,7 +317,6 @@
    \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{CERN Open Hardware License \href{http://ohwr.org/cernohl}{-- ohwr.org/cernohl}}
     \begin{itemize}
     \item Developed by Knowledge Transfer Group at CERN.
@@ -326,10 +325,9 @@
    \end{itemize}
   \end{block}
 
-  \note[item]{In order to be able to collaborate and share, we created the open hardware repository.}
-  \note[item]{Which is a web platform, in read access for everyone.}
-  \note[item]{To have a solid legal base, we also created the CERN open hardware license.}
-  \note[item]{We created it because no existing license was suited for hardware.}
+  \note[item]{In order to help collaboration, we created the open hardware repository.}
+  \note[item]{It's a website where the designs are stored and are accessible by everyone.}
+  \note[item]{As we couldn't find any suitable license for our design, we created a new one called CERN OHL}
 
 \end{frame}
 
@@ -354,17 +352,15 @@
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Carriers}
     \begin{itemize}
-    \item Three fully supported (SPEC, SVEC, SPEXI)
+    \item Three fully supported (VME, PCIe, PXIe)
     \item Six other carriers (VXS, AMC, stand-alone)
     \end{itemize}
   \end{block}
 
   % VFC, PFC, AFC, RHINO, VXS DSP carrier, Stand-alone 18-slot FMC carrier
 
-  \pause
   \begin{block}{Mezzanines}
     \begin{itemize}
     \item Four fully supported (ADC-100M, TDC, DIO-5ch, FD)
@@ -424,7 +420,7 @@
 \begin{frame}{FMC mezzanine: 5-channel 1ns TDC}{A joint development by TE/ABT, TE/CRG \& BE/CO}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/fmc-tdc.eps}
+    \includegraphics[height=4cm]{../pictures/fmc-tdc.eps}
   \end{center}
 
   \note[item]{This is the TDC mezzanine, developed in collaboration with other groups at CERN.}
@@ -435,7 +431,7 @@
 \begin{frame}{FMC mezzanine: 100 MSPS 14-bit 4-channel ADC}
 
   \begin{center}
-    \includegraphics[height=6.5cm]{../pictures/fmc-adc-100m.eps}
+    \includegraphics[height=4cm]{../pictures/fmc-adc-100m.eps}
   \end{center}
 
   \note[item]{And this is our ADC mezzanine, with oscilloscope-like analogue front-end}
@@ -497,12 +493,11 @@
     \end{itemize}
   \end{block}
 
-  \begin{block}{Architecture}
+  \begin{block}{New cores developed}
     \begin{itemize}
-    \item One or more Wishbone buses
-    \item A Wishbone interface on all blocks
-    \item Crossbar to interconnect/arbitrate masters and slaves % developed in GSI
-    \item Design of new cores: VME64x, PCIe, DDR3
+    \item At CERN: VME64x, PCIe, DDR3
+    \item By collaborators: Wishbone crossbar (GSI)
+%    \item Crossbar to interconnect/arbitrate masters and slaves % developed in GSI
     \end{itemize}
   \end{block}
 
@@ -518,41 +513,37 @@
 \begin{frame}{Example: FMC-ADC gateware architecture}
 
   \begin{center}
-    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color_sdb.eps}
+    \includegraphics[height=6cm]{../pictures/spec-fmc-adc_arch_simple_color.eps}
   \end{center}
 
   \note[item]{Here is an example of the Wishbone architecture.}
   \note[item]{It represents the FMC-ADC gateware for a PCIe carrier.}
-  \note[item]{Here is the the PCIe interface, a first Wishbone bus to access the configuration an status registers.}
-  \note[item]{The memory mapping is made using crossbar core, which also contains SDB records, I'll come to that later.}
-  \note[item]{And there is also two other buses, one to write data to memory and the other one to read the data via DMA.}
+  \note[item]{Several Wishbone buses interconnects every cores, it makes the design very modular.}
 
 \end{frame}
 
 
 %#####################################################################
 %############ SECTION ################################################
-\section{Tools and concepts}
+\section{New tools}
 
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Gateware design tools}
 
-  \pause
-  \begin{block}{hdlmake}
+  \begin{block}{hdlmake: Automates design flow}
     \begin{itemize}
-    \item Generates \textbf{Makefiles} for synthesis and simulation.
-    \item Project structure described in \textbf{Manifest} files.
+    \item Generates Makefiles for synthesis and simulation.
+    \item Project structure described in Manifest files.
     \item Solves dependencies (fetches remote ones).
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{wbgen2: Wishbone slave generator}
     \begin{itemize}
     \item Generates registers, RAM, FIFO, interrupt controller.
-    \item Structure described in a single text file.
+    \item Describes structure in a single text file.
     \item Automatically generates HDL source, C header and documentation.
     \end{itemize}
   \end{block}
@@ -560,7 +551,8 @@
   \note[item]{To help with the gateware design, we also developed some tools.}
   \note[item]{The first one is hdlmake. It allows to generate Makefile for synthesis and simulation from a Manifest file describing the project structure.}
   \note[item]{The second one is wbgen2, which is a Wishbone slave generator.}
-  \note[item]{From a single text file, it generate the HDL and C header source and also the documentation.}
+  \note[item]{It generate the HDL and C header source and documentation from a single text file.}
+  \note[item]{They are both available on the OHWR website.}
 
 \end{frame}
 
@@ -571,35 +563,38 @@
     \includegraphics[height=7cm]{../pictures/wbgen_example.eps}
   \end{center}
 
-  \note[item]{This is a example of HTML documentation generated be wbgen2.}
+  \note[item]{This is a example of HTML documentation AUTOMATICALLY generated by wbgen2.}
 
 \end{frame}
 
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Testing environment}
 
-  \begin{block}{PTS: Production Test Suite}
+  \begin{block}{Production test systems}
     \begin{itemize}
-    \item Performs functional tests.
-    \item Dedicated test setup per board.
-    \item Software framework to run the tests (Python).
-    \item Stores calibration data in FMC EEPROM.
-    \item Generates log files (life-cycle management).
+    \item Performs automated production tests.
+    \item Includes a software framework to run the tests (Python).
+%    \item Stores calibration data in FMC EEPROM.
+%    \item Generates log files (life-cycle management).
     \end{itemize}
   \end{block}
+
+   \begin{center}
+    \includegraphics[height=5cm]{../pictures/pts_rack.eps}
+  \end{center}
 
 % Before CERN was testing boards
 % -> unloads CERN team
 
 % Warranty, repair of faulty boards
 
-  \note[item]{For all the boards of our kit, we also developed a test system.}
-  \note[item]{It's only a functional test.}
-  \note[item]{We developed a software framework in Python.}
-  \note[item]{After passing on the test system, the boards are ready to be put in stock.}
+  \note[item]{For all the boards of our kit, we also developed a PRODUCTION test system.}
+  \note[item]{We developed a software framework in Python to run the tests.}
+  \note[item]{(After passing on the test system, the boards are ready to be put in stock.)}
 
 \end{frame}
 
+\begin{comment}
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Example: VME boards test system}
 
@@ -613,58 +608,56 @@
   \note[item]{And this is a laptop that manages system.}
 
 \end{frame}
+\end{comment}
 
+\begin{comment}
 %------------ FRAME --------------------------------------------------
 \begin{frame}{New concepts}
 
-  \pause
   \begin{block}{SDB: Self Describing Bus}
     \begin{itemize}
-    \item Series of predefined structures.
-    \item Contains meta-data about HDL cores.
-    \item Allows software to know about gateware architecture.
+    \item Allows software to know about gateware architecture
+    \item Series of predefined structures
+    \item Contains meta-data about HDL cores
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{SDB File System}
     \begin{itemize}
-    \item Based on SDB data structures.
-    \item Easy to parse (e.g. for embedded processor).
-    \item Library and tools available. % (generate, read)
-    \item Used in the FMC EEPROM.
+    \item Based on SDB data structures
+    \item Easy to parse (e.g. for embedded processor)
+    \item Library and tools available % (generate, read)
+    \item Used in the FMC EEPROM
     \end{itemize}
   \end{block}
 
   \note[item]{During the kit design we implemented some new concepts.}
   \note[item]{This first one is SDB, for Self Describing Bus.}
-  \note[item]{It's a set of structures describing the gateware architecture.}
-  \note[item]{It allow the driver to know about the gateware just by accessing it.}
+  \note[item]{It allow the driver to know about the gateware just by accessing a set of structure in the HDL cores.}
   \note[item]{The second concept is a file system derived from SDB.}
-  \note[item]{It's a very simple filesystem and it's used for example in the FMC EEPROM.}
+  \note[item]{It's a very simple filesystem than can be read by an embedded processor and it's used for example in the FMC EEPROM.}
 
 \end{frame}
+\end{comment}
 
 
 %#####################################################################
 %############ SECTION ################################################
-\section{Conclusions}
+\section{Future work \& conclusions}
 
 \subsection*{} % dummy subsection to display dots
 
 %------------ FRAME --------------------------------------------------
-\begin{frame}{Perspectives}
+\begin{frame}{Future work}
 
   \begin{block}{Consolidate our designs}
     \begin{itemize}
     \item Consolidate gateware and drivers. Make more releases.
     \item Consolidate documentation (manuals, FAQs, ...).
     \item Help companies to provide support.
-%    \item Cleanup and unify repositories.
     \end{itemize}
   \end{block}
 
-  \pause
   \begin{block}{Facilitate sharing with FOSS EDA tools}
     % FOSS = Free Open Source Software, EDA = Electronic Design Automation
     \begin{itemize}
@@ -672,7 +665,7 @@
     \item Existing FOSS tools not usable for complex designs.
     \item We contribute to the development of FOSS tools:
       \begin{itemize}
-      \item Extension of \textbf{Icarus} Verilog simulator with VHDL and SV support. % SV = SystemVerilog
+      \item Extension of \textbf{Icarus} Verilog simulator with VHDL and \\ SystemVerilog support.
       \item Enhancement of \textbf{KiCAD} (schematics \& PCB editor).
       \end{itemize}
     \end{itemize}
@@ -693,33 +686,32 @@
 
   \begin{block}{}
     \begin{itemize}
-      \pause
-    \item CERN's FMC kit is not only a set of hardware modules
+    \item CERN's FMC kit is not only a set of hardware modules.
       \begin{itemize}
-      \item Collection of HDL cores
-      \item Linux device driver, libraries and test program
-      \item Production test system
-      \item Tools and concepts %(wbgen, hdlmake, )
+      \item HDL cores, drivers, test system, tools
       \item Commercially available (sometimes from several sources)
       \end{itemize}
-      \pause
     \item Open Hardware has many advantages.
       \begin{itemize}
       \item Anyone can help in developments and make improvements.
-      \item Allows to work differently with industry. % (design work, smaller companies).
+%      \item Allows to work differently with industry. % (design work, smaller companies).
       \item Not tied to a single company for production and support.
       \end{itemize}
-      \pause
-    \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
-      \pause
+%    \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
     \item OHR site is practical for engineers and is stimulating.
+%    \item Eight CERN designs are already commercialized.
+    \item New users and collaborations are welcome.
 %    \item OHR site contains many re-usable HDL cores.
-      \pause
-    \item Good FOSS tools needed to facilitate sharing.
+%    \item Good FOSS tools needed to facilitate sharing.
 %    \item Many designs being developed and several are already produced by industry.
-      \pause
     \item Four years of experience show it works!
     \end{itemize}
+  \end{block}
+
+  \begin{block}{}
+    \begin{center}
+    Want to know more? Take a tour on \textbf{ohwr.org}
+    \end{center}
   \end{block}
 
   \note[item]{}
