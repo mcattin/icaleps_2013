@@ -101,7 +101,7 @@
 \begin{frame}
   \titlepage
   \note[item]{Introduce myself.}
-  \note[item]{I'm going to talk about Open Hardware design at CERN.}
+  \note[item]{I'm going to talk about Open Hardware design we make at CERN.}
 \end{frame}
 
 \begin{frame}{Outline}
@@ -197,7 +197,7 @@
 
   \begin{block}{Motivations}
     \begin{itemize}
-    \item Obsolete components/modules
+    \item Obsolete components/modules $\rightarrow$ can't build/buy
     \item Limited stock $\rightarrow$ no new installations
     \item Incomplete/nonexistent documentation
     \end{itemize}
@@ -214,8 +214,8 @@
     \begin{itemize}
 %    \item Generic platform-dependent carriers
 %    \item Specific platform-independent mezzanines
-    \item Reduce number of supported modules
     \item Only one complex design per platform (carrier)
+    \item Reduce number of supported modules
     \end{itemize}
   \end{block}
 
@@ -452,7 +452,7 @@
 
   \begin{block}{Mezzanines}
     \begin{itemize}
-    \item Four fully supported (ADC-100M, TDC, DIO-5ch, FD)
+    \item Four fully supported (ADC-100M, TDC, DIO-5ch, Delay)
     \item About a dozen other mezzanines (ADC, DAC, DDS, DIO)
     \end{itemize}
   \end{block}
@@ -549,7 +549,7 @@
       FMC DIO 5ch & 3 & 10 & 92 \\
       \hline
       \hline
-      \textit{WR switch 18 ports} & 1 & 11 & 77\\
+      WR switch 18 ports & 1 & 11 & 77\\
       \hline
     \end{tabular}
 
@@ -629,7 +629,7 @@
 
   \begin{block}{}
     \begin{center}
-    Both available on ohwr.org
+      FOSS available on ohwr.org
     \end{center}
   \end{block}
 
@@ -863,13 +863,13 @@
     \item CERN's FMC kit is not only a set of hardware modules.
       \begin{itemize}
       \item Collection of HDL cores
-      \item Linux device driver, libraries and test program
-      \item Production test system
+      \item Linux device drivers, libraries and test programs
+      \item Production test systems
       \item Tools and concepts %(wbgen, hdlmake, )
        \end{itemize}
-    \item Eight CERN designs are already commercialized.
 %    \item Commercially available (sometimes from several sources)
     \item Using standards improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
+    \item Eight CERN designs are already commercialized.
     \item New users and collaborations are welcome.
 
 %    \item Open Hardware has many advantages.

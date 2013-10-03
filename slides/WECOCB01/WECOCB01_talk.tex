@@ -6,6 +6,8 @@
 %\setbeameroption{show only notes}
 \setbeameroption{hide notes}
 
+%\setbeamertemplate{footline}[frame number]
+
 %\hypersetup{pdfpagemode=FullScreen} % makes your presentation go automatically to full screen
 \useoutertheme[subsection=false]{smoothbars}
 
@@ -91,10 +93,8 @@
   \titlepage
 
   \note[item]{Good morning everyone.}
-  \note[item]{I work at CERN in the Beam Controls group.}
-  \note[item]{We provide electronics to other groups.}
-  \note[item]{Four year ago we changed the way we develop hardware.}
-  \note[item]{I will present the FMC kit we develop using new methods.}
+  \note[item]{I will present the new hardware module kit we develop at CERN.}
+  \note[item]{And how we changed the way we make hardware.}
 
 \end{frame}
 
@@ -203,7 +203,7 @@
 
   \begin{block}{Motivations to design a new kit}
     \begin{itemize}
-    \item Obsolete components/modules
+    \item Obsolete components/modules $\rightarrow$ can't build/buy
     \item Limited stock $\rightarrow$ no new installations
     \item Incomplete/nonexistent documentation
     \end{itemize}
@@ -220,8 +220,8 @@
     \begin{itemize}
 %    \item Generic platform-dependent carriers
 %    \item Specific platform-independent mezzanines
-    \item Reduce number of supported modules
     \item Only one complex design per platform (carrier)
+    \item Reduce number of supported modules
     \end{itemize}
   \end{block}
 
@@ -463,15 +463,17 @@
       FMC DIO 5ch & 3 & 10 & 92 \\
       \hline
       \hline
-      \textit{WR switch 18 ports} & 1 & 11 & 77\\
+      WR switch 18 ports & 1 & 11 & 77\\
       \hline
     \end{tabular}
     \caption{eight CERN OH designs found producers and users}
   \end{table}
 
-  \note[item]{Here is a summary of CERN designs commercially available.}
-  \note[item]{As you can see, most of the boards have more than one producer.}
-  \note[item]{And for the more generic boards, the number of user is quite big.}
+  \note[item]{Here is a summary of CERN OPEN HARDWARE designs commercially available.}
+  \note[item]{As you can see, most of them are already produced by several companies.}
+  \note[item]{And for the more generic boards, like the PCIe carrier, the number of user is quite big.}
+  \note[item]{}
+  \note[item]{And I have to say that if we wouldn't have changed the way we design boards, those two column would be just full of ones.}
 
 \end{frame}
 
@@ -495,8 +497,8 @@
 
   \begin{block}{New cores developed}
     \begin{itemize}
-    \item At CERN: VME64x, PCIe, DDR3
-    \item By collaborators: Wishbone crossbar (GSI)
+    \item At CERN: VME64x, PCIe, DDR3, ...
+    \item By collaborators: Wishbone crossbar (GSI), ...
 %    \item Crossbar to interconnect/arbitrate masters and slaves % developed in GSI
     \end{itemize}
   \end{block}
@@ -532,7 +534,7 @@
 %------------ FRAME --------------------------------------------------
 \begin{frame}{Gateware design tools}
 
-  \begin{block}{hdlmake: Automates design flow}
+  \begin{block}{hdlmake: Automating design flow}
     \begin{itemize}
     \item Generates Makefiles for synthesis and simulation.
     \item Project structure described in Manifest files.
@@ -652,7 +654,7 @@
 
   \begin{block}{Consolidate our designs}
     \begin{itemize}
-    \item Consolidate gateware and drivers. Make more releases.
+    \item Consolidate gateware and drivers. %Make more releases.
     \item Consolidate documentation (manuals, FAQs, ...).
     \item Help companies to provide support.
     \end{itemize}
@@ -671,13 +673,13 @@
     \end{itemize}
   \end{block}
 
-  \note[item]{For the last 4 years the focus was on make the kit commercially available, but now we still have to consolidate the design.}
-  \note[item]{And also help companies selling our board to provide support to other users.}
-  \note[item]{Finally, we also contribute to Free Open Source Software EDA tools.}
-  \note[item]{Because the EDA tools license are expensive and the different tools don't interoperate.}
-  \note[item]{And the FOSS are not usable for complex designs.}
-  \note[item]{So we contribute to the Icarus simulator to add support for VHDL and SystemVerilog.}
-  \note[item]{And also to KiCAD a PCB design tool.}
+  \note[item]{For the past 4 years we concentrated our effort on commercialising and making first releases of our boards.}
+  \note[item]{But we still have to consolidate our designs. For example improve the documentation.}
+  \note[item]{And also help companies to provide support to users.}
+  \note[item]{}
+  \note[item]{Finally, to facilitate design sharing, we also contribute to Open Source EDA tools.}
+  \note[item]{Like Icarus with an extention for VHDL and SystemVerilog.}
+  \note[item]{And also to KiCad, the PCB design tool.}
 
 \end{frame}
 
@@ -688,18 +690,20 @@
     \begin{itemize}
     \item CERN's FMC kit is not only a set of hardware modules.
       \begin{itemize}
-      \item HDL cores, drivers, test system, tools
-      \item Commercially available (sometimes from several sources)
+      \item HDL cores, drivers, test systems, tools
+%      \item Commercially available (sometimes from several sources)
       \end{itemize}
+    \item Eight CERN designs are already commercialized.
     \item Open Hardware has many advantages.
       \begin{itemize}
-      \item Anyone can help in developments and make improvements.
+      \item Make better designs: peer review, user feedback
+      \item More collaborations inside and outside CERN
+%      \item Anyone can help in developments and make improvements.
 %      \item Allows to work differently with industry. % (design work, smaller companies).
-      \item Not tied to a single company for production and support.
+%      \item Not tied to a single company for production and support.
       \end{itemize}
 %    \item Using standards attracts users and improves re-usability. %(VME64x, PCIe, FMC, Wishbone)
     \item OHR site is practical for engineers and is stimulating.
-%    \item Eight CERN designs are already commercialized.
     \item New users and collaborations are welcome.
 %    \item OHR site contains many re-usable HDL cores.
 %    \item Good FOSS tools needed to facilitate sharing.
@@ -715,6 +719,11 @@
   \end{block}
 
   \note[item]{}
+  \note[item]{}
+  \note[item]{}
+  \note[item]{The open hardware repository is very useful and stimulates collaborations.}
+  \note[item]{So if you're interested, you are welcome to use or collaborate to our designs.}
+  \note[item]{Our 4 years of experience show that this new way of making design works!}
 
 \end{frame}
 
